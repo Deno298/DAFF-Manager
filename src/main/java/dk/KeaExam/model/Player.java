@@ -21,27 +21,27 @@ public class Player {
     @Column(name = "def_pos")
     private String defPos;
     @Column(name = "throwing")
-    private Integer throwing;
-    @Column(name = "precision")
-    private Integer precision;
+    private int throwing;
+    @Column(name = "preecision")
+    private int precision;
     @Column(name = "vision")
-    private Integer vision;
+    private int vision;
     @Column(name = "speed")
-    private Integer speed;
+    private int speed;
     @Column(name = "acceleration")
-    private Integer acceleration;
+    private int acceleration;
     @Column(name = "route_running")
-    private Integer routeRunning;
+    private int routeRunning;
     @Column(name = "catching")
-    private Integer catching;
+    private int catching;
     @Column(name = "tackling")
-    private Integer tackling;
+    private int tackling;
     @Column(name = "blitzing")
-    private Integer blitzing;
+    private int blitzing;
     @Column(name = "man_coverage")
-    private Integer manCoverage;
+    private int manCoverage;
     @Column(name = "zone_coverage")
-    private Integer zoneCoverage;
+    private int zoneCoverage;
 
     public Long getTeamId() {
         return teamId;

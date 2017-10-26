@@ -1,6 +1,7 @@
 package dk.KeaExam.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class User {
@@ -9,10 +10,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column
+    @NotNull
     private String username;
 
-
+    @NotNull
     private String password;
 
     public User() {

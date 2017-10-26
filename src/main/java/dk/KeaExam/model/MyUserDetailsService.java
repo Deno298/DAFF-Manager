@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
@@ -22,5 +24,9 @@ public class MyUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
         return new MyUserPrincipal(user);
+    }
+
+    public User registerUser(User user){
+        return userRepository.save(user);
     }
 }

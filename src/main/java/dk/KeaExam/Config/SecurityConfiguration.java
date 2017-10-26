@@ -21,7 +21,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
-
     @Autowired
     private MyUserDetailsService userDetailsService;
 
@@ -64,6 +63,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().permitAll()
-                .defaultSuccessUrl("/all");
+                .defaultSuccessUrl("/search");
     }
 }

@@ -7,8 +7,11 @@
 <body>
 <h1>HOLDER FORM</h1>
 <form action="#" th:action="@{/registration}" th:object="${user}" method="post">
+    <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+           class="validation-message"></label>
     <p>Username: <input type="text" th:field="*{username}" /></p>
     <p>Password: <input type="text" th:field="*{password}" /></p>
+    <p>Email: <input type="text" th:field="*{email}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
 </body>

@@ -5,7 +5,30 @@
 </head>
 
 <body>
-<div class="container">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.jsp">
+                <p>Home</p>
+            </a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-nav-demo">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="signup.jsp">Sign Up</a></li>
+                <li><a th:href="@{/logout}" th:method="post">logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
     <table class="table">
         <thead>
         <tr>
@@ -46,7 +69,5 @@
         </tr>
         </tbody>
     </table>
-</div>
-
 </body>
 </html>

@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="layout :: site-head">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 </head>
 
 <body>
+
+<header th:replace="layout :: site-header"></header>
+
+<main th:replace="layout :: site-sidebar"></main>
 
 <div class="container">
     <input type="text" id="search" placeholder="Type to search"/>
@@ -49,8 +53,8 @@
         </tbody>
     </table>
 </div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script  src="../static/js/SearchFunction.js" th:src="@{/js/SearchFunction.js}"></script>
+<div th:replace="layout :: site-scripts"></div>
 </body>
 </html>

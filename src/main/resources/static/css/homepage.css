@@ -1,0 +1,19 @@
+.new {
+    background: url("../img/homepage-background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+html {
+    height: 100%;
+}
+
+.sign-up {
+    padding: 15%;
+    text-align: center;
+}
+
+.btn-2 {
+    padding: 1%;
+}

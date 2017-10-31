@@ -8,6 +8,11 @@ public class LoggedInController {
 
     @RequestMapping("/hello")
     public String greetings(){
-        return "loggedin";
+        return "landingpage";
+    }
+
+    @RequestMapping("/layout")
+    public String layout() {
+        return "layout";
     }
 }

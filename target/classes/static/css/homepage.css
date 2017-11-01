@@ -11,11 +11,13 @@ html {
 
 .sign-up {
     padding-top: 35%;
-    padding-left: 15%;
-    padding-right: 15%;
     text-align: center;
 }
 
 .text{
     color: black;
+}
+
+h2{
+    text-align: center;
 }

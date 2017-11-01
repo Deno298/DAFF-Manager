@@ -4,22 +4,19 @@
       xmlns:sec="http//www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 
-<head th:replace="layout :: site-head">
+<head th:replace="alternativeLayout :: site-head">
 
 </head>
 <body>
 
-<header th:replace="layout :: site-header"></header>
+<nav th:replace="alternativeLayout :: site-header"></nav>
 
 
+<main th:replace="layout :: site-sidebar"></main>
 
 
-<!--/*
-<div sec:authorize="isAuthenticated()">
-    Welcome
-    <span th:text ="${#authentication.getPrincipal().getUsername()}"></span>
-    <span th:text ="${#authentication.getPrincipal().getEmail()}"></span></div>
-     */-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script  src="../static/js/SearchFunction.js" th:src="@{/js/SearchFunction.js}"></script>
 <div th:replace="layout :: site-scripts"></div>
 </body>
 </html>

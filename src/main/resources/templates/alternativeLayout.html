@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="site-head">
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="../static/css/landingpage.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+</head>
+<body>
+
+
+
+
+<nav class="navbar navbar-default" th:fragment="site-header">
+    <div class="container">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a th:href="@{/logout}" th:method="post">Logout</a></li>
+            </ul>
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+
+</body>
+</html>

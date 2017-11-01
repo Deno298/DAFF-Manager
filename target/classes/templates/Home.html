@@ -10,9 +10,9 @@
 <body class="new">
 
 <div class="container">
-    <div class="sign-up">
-        <h2 class="text">Log In With Your Username</h2>
-        <div class="col-md-6 col-md-offset-3">
+    <div class="row" style="margin-top:400px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <h2 class="text">Log In With Your Username</h2>
             <form th:action="@{/}" method="post">
                 <div class="form-group input-font">
                     <input type="text" class="form-control" name="username" placeholder="Enter username"/>
@@ -20,13 +20,17 @@
                 <div class="form-group input-font">
                     <input type="password" class="form-control" name="password" placeholder="Password"/>
                 </div>
-                <button type="submit" value="login" class="btn btn-default">Login</button>
-                <a th:href="@{/registration}" class = "btn btn-default" role="button">Sign Up!</a>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <button type="submit" value="login" class="btn btn-lg btn-success btn-block">Login</button>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <a th:href="@{/registration}" class = "btn btn-lg btn-primary btn-block" role="button">Sign Up!</a>
+                </div>
             </form>
         </div>
     </div>
 </div>
 
-</body>
 
+</body>
 </html>

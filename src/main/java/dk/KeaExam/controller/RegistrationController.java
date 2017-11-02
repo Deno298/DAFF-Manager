@@ -24,7 +24,7 @@ public class RegistrationController {
         @GetMapping("/registration")
         public String greetingForm(Model model) {
             model.addAttribute("user", new User());
-            return "registration";
+            return "signup";
         }
 
         @PostMapping("/registration")
@@ -34,10 +34,10 @@ public class RegistrationController {
                 bindingResult.rejectValue("username", "error.user", "There is already a user with that username");
             }
             if(bindingResult.hasErrors()){
-                return"registration";
+                return"signup";
             }
             myUserDetailsService.registerUser(greeting);
-            return "/result";
+            return "landingpage";
         }
     }
 

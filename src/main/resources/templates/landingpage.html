@@ -2,14 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http//www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+
+
+<head th:replace="alternativeLayout :: site-head">
+
 </head>
 <body>
-<div sec:authorize="isAuthenticated()">
-    Welcome
-    <span th:text ="${#authentication.getPrincipal().getUsername()}"></span>
-    <span th:text ="${#authentication.getPrincipal().getEmail()}"></span></div>
+
+<nav th:replace="alternativeLayout :: site-header"></nav>
+
+
+<main th:replace="layout :: site-sidebar"></main>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script  src="../static/js/SearchFunction.js" th:src="@{/js/SearchFunction.js}"></script>
+<div th:replace="layout :: site-scripts"></div>
 </body>
 </html>

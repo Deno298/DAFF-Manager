@@ -10,10 +10,14 @@ html {
 }
 
 .sign-up {
-    padding: 15%;
+    padding-top: 35%;
     text-align: center;
 }
 
-.btn-2 {
-    padding: 1%;
+.text{
+    color: black;
+}
+
+h2{
+    text-align: center;
 }

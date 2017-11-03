@@ -3,20 +3,16 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http//www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-
-<head th:replace="alternativeLayout :: site-head">
-
+<head th:replace="layout :: site-head">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 </head>
+
 <body>
 
-<nav th:replace="alternativeLayout :: site-header"></nav>
-
+<header th:replace="layout :: site-header"></header>
 
 <main th:replace="layout :: site-sidebar"></main>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script  src="../static/js/SearchFunction.js" th:src="@{/js/SearchFunction.js}"></script>
 <div th:replace="layout :: site-scripts"></div>
 </body>
 </html>

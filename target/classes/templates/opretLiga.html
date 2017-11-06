@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <link rel="stylesheet" href="../static/css/login-signup.css" th:href="@{/css/login-signup.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+<header th:replace="layout :: site-header"></header>
+
+<main th:replace="layout :: site-sidebar"></main>
+
+<div class="container">
+    <div class="text">
+        <h2>Fill out the form to create a liga!</h2>
+        <div class="col-lg-6 col-lg-offset-3">
+            <form th:action="@{/opretliga.html}" th:object="${liga}" method="post">
+                <div class="form-group input-font">
+                    <input type="text" class="form-control" th:field="*{liganame}" placeholder="Enter Username" required="Required"/>
+                </div>
+                <div class="form-group input-font">
+                    <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password" required="Required"/>
+                </div>
+                <button type="submit" value="login" class="btn btn-default">Sign up!</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script  src="../static/js/SearchFunction.js" th:src="@{/js/SearchFunction.js}"></script>
+<div th:replace="layout :: site-scripts"></div>
+</body>
+</html>

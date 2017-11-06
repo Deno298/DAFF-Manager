@@ -2,6 +2,8 @@ package dk.KeaExam.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -20,6 +22,10 @@ public class User {
     @NotNull
     private String email;
 
+    @ManyToMany
+    @JoinTable(name = "USER_LIGA", joinColumns = @JoinColumn(name="User"),
+    inverseJoinColumns = @JoinColumn(name = "liga"))
+    private List<Liga> ligaer = new ArrayList<>();
 
     public User() {
     }
@@ -60,6 +66,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Liga> getLigaer() {
+        return ligaer;
+    }
+
+    public void tilføjLigaer(Liga liga) {
+        this.ligaer.add(liga);
     }
 }
 

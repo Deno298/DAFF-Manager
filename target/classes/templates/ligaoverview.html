@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http//www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="layout :: site-head">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+<header th:replace="layout :: site-header"></header>
+
+<main th:replace="layout :: site-sidebar"></main>
+
+<div th:replace="layout :: site-scripts"></div>
+</body>
+</html>

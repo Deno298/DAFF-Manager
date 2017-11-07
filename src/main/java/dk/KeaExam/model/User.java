@@ -10,7 +10,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     @Column
     @NotNull
@@ -23,8 +23,7 @@ public class User {
     private String email;
 
     @ManyToMany
-    @JoinTable(name = "USER_LIGA", joinColumns = @JoinColumn(name="User"),
-    inverseJoinColumns = @JoinColumn(name = "liga"))
+    @JoinTable(name = "USER_LIGA")
     private List<Liga> ligaer = new ArrayList<>();
 
     public User() {
@@ -44,11 +43,11 @@ public class User {
         this.email = email;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

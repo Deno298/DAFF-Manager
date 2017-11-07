@@ -1,12 +1,11 @@
 package dk.KeaExam.controller;
 
-import dk.KeaExam.model.MyUserDetailsService;
+import dk.KeaExam.model.CustomUserDetailService;
 import dk.KeaExam.model.User;
 import dk.KeaExam.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
 
@@ -19,24 +18,24 @@ public class RegistrationController {
 
 
     @Autowired
-    private MyUserDetailsService myUserDetailsService;
+    private CustomUserDetailService customUserDetailService;
 
         @GetMapping("/registration")
-        public String greetingForm(Model model) {
+        public String userForm(Model model) {
             model.addAttribute("user", new User());
             return "signup";
         }
 
         @PostMapping("/registration")
-        public String greetingSubmit(@ModelAttribute User greeting, BindingResult bindingResult) {
-            User userExists = (userRepository.findByUsername(greeting.getUsername()));
+        public String userSubmit(@ModelAttribute User user, BindingResult bindingResult) {
+            User userExists = (userRepository.findByUsername(user.getUsername()));
             if(userExists != null){
                 bindingResult.rejectValue("username", "error.user", "There is already a user with that username");
             }
             if(bindingResult.hasErrors()){
                 return"signup";
             }
-            myUserDetailsService.registerUser(greeting);
+            customUserDetailService.registerUser(user);
             return "landingpage";
         }
     }

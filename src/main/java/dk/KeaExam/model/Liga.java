@@ -10,7 +10,7 @@ public class Liga {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long liga_id;
+    private Integer liga_id;
 
     @NotNull
     private String liganame;
@@ -29,11 +29,11 @@ public class Liga {
         this.password = password;
     }
 
-    public long getLiga_id() {
+    public Integer getLiga_id() {
         return liga_id;
     }
 
-    public void setLiga_id(long liga_id) {
+    public void setLiga_id(Integer liga_id) {
         this.liga_id = liga_id;
     }
 
@@ -59,5 +59,15 @@ public class Liga {
 
     public void addUsers(User user) {
         this.users.add(user);
+    }
+
+    @Override
+    public String toString() {
+        return "Liga{" +
+                "liga_id=" + liga_id +
+                ", liganame='" + liganame + '\'' +
+                ", password='" + password + '\'' +
+                ", users=" + users +
+                '}';
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashSet;
@@ -32,11 +33,11 @@ public class LigaController {
     }
 
     @PostMapping("/ligaoverview")
-    public String userDelete(@ModelAttribute User user) {
+    public String userDelete(@ModelAttribute User user, @RequestParam("paramName") Integer liga_id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         System.out.println(name);
-        Liga liga = ligaRepository.getOne(1);
+        Liga liga = ligaRepository.getOne(liga_id);
         User userExists = (userRepository.findByUsername(name));
         userExists.tilføjLigaer(liga);
         userRepository.save(userExists);

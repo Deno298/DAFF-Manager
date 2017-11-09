@@ -1,6 +1,6 @@
 package dk.KeaExam.Config;
 
-import dk.KeaExam.model.MyUserDetailsService;
+import dk.KeaExam.model.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
-    private MyUserDetailsService userDetailsService;
+    private CustomUserDetailService userDetailsService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

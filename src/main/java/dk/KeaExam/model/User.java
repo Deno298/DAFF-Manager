@@ -10,7 +10,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     @Column
     @NotNull
@@ -22,9 +22,10 @@ public class User {
     @NotNull
     private String email;
 
-    @ManyToMany
-    @JoinTable(name = "USER_LIGA", joinColumns = @JoinColumn(name="User"),
-    inverseJoinColumns = @JoinColumn(name = "liga"))
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_LIGA",
+    joinColumns = @JoinColumn(name="id"),
+    inverseJoinColumns = @JoinColumn(name = "liga_id"))
     private List<Liga> ligaer = new ArrayList<>();
 
     public User() {
@@ -44,11 +45,11 @@ public class User {
         this.email = email;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -74,6 +75,17 @@ public class User {
 
     public void tilføjLigaer(Liga liga) {
         this.ligaer.add(liga);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", ligaer=" + ligaer +
+                '}';
     }
 }
 

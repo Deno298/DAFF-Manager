@@ -10,18 +10,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
 @Service
-public class MyUserDetailsService implements UserDetailsService {
+public class CustomUserDetailService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    EntityManager em;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -32,7 +27,7 @@ public class MyUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
-        return new MyUserPrincipal(user);
+        return new CustomUserPrincipal(user);
     }
 
     public User registerUser(User user){
@@ -42,8 +37,6 @@ public class MyUserDetailsService implements UserDetailsService {
         finalUser.setEmail(user.getEmail());
         return userRepository.save(finalUser);
     }
-
-    
 
 
 }

@@ -5,11 +5,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class MyUserPrincipal implements UserDetails {
+public class CustomUserPrincipal implements UserDetails {
 
     private User user;
 
-    public MyUserPrincipal(final User user) {
+    public CustomUserPrincipal(final User user) {
         this.user = user;
     }
 
@@ -35,6 +35,8 @@ public class MyUserPrincipal implements UserDetails {
     public String getEmail(){
         return user.getEmail();
     }
+
+    public Integer getId(){return user.getId();}
 
     @Override
     public boolean isAccountNonExpired() {

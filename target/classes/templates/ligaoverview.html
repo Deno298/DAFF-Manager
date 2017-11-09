@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http//www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: site-head">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 </head>
@@ -13,6 +10,34 @@
 
 <main th:replace="layout :: site-sidebar"></main>
 
+<div class="container">
+    <div class="text">
+    <input type="text" id="search" placeholder="Type to search"/>
+    <table id="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Tilmeld</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="liga, status : ${ligaoverview}">
+            <td th:text="${status.count}">1</td>
+            <td th:text="${liga.liganame}">Name</td>
+            <td th:text="${liga.liga_id}">Id</td>
+            <td> <span th:text ="${#authentication.getPrincipal().getUsername()}"></span> </td>
+            <td><form th:action="@{/ligaoverview.html}" method="post">
+                <input type="hidden" name="paramName" th:value="${liga.liga_id}"/>
+                <button type="submit">Tilmeld</button>
+            </form></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script  src="../static/js/SearchFunction.js" th:src="@{/js/SearchFunction.js}"></script>
 <div th:replace="layout :: site-scripts"></div>
 </body>
 </html>

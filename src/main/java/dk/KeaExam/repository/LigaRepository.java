@@ -7,5 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LigaRepository extends JpaRepository<Liga, Integer> {
 
-    Liga findByLiga_id(long id);
 }

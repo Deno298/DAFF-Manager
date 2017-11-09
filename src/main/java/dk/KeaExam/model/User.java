@@ -22,8 +22,10 @@ public class User {
     @NotNull
     private String email;
 
-    @ManyToMany
-    @JoinTable(name = "USER_LIGA")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_LIGA",
+    joinColumns = @JoinColumn(name="id"),
+    inverseJoinColumns = @JoinColumn(name = "liga_id"))
     private List<Liga> ligaer = new ArrayList<>();
 
     public User() {
@@ -73,6 +75,17 @@ public class User {
 
     public void tilføjLigaer(Liga liga) {
         this.ligaer.add(liga);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", ligaer=" + ligaer +
+                '}';
     }
 }
 

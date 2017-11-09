@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashSet;
+
 @Controller
 public class LigaController {
 
@@ -30,12 +32,17 @@ public class LigaController {
     }
 
     @PostMapping("/ligaoverview")
-    public String userDelete(@ModelAttribute User user, BindingResult bindingResult) {
+    public String userDelete(@ModelAttribute User user) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        Liga liga = (ligaRepository.findByLiga_id(1));
+        System.out.println(name);
+        Liga liga = ligaRepository.getOne(1);
         User userExists = (userRepository.findByUsername(name));
         userExists.tilføjLigaer(liga);
+        userRepository.save(userExists);
+
+
+
         return "landingpage";
     }
 }

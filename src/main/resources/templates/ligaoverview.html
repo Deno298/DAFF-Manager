@@ -25,8 +25,10 @@
         <tr th:each="liga, status : ${ligaoverview}">
             <td th:text="${status.count}">1</td>
             <td th:text="${liga.liganame}">Name</td>
+            <td th:text="${liga.liga_id}">Id</td>
             <td> <span th:text ="${#authentication.getPrincipal().getUsername()}"></span> </td>
             <td><form th:action="@{/ligaoverview.html}" method="post">
+                <input type="hidden" name="paramName" th:value="${liga.liga_id}"/>
                 <button type="submit">Tilmeld</button>
             </form></td>
         </tr>

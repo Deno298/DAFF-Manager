@@ -41,9 +41,6 @@ public class LigaController {
         User userExists = (userRepository.findByUsername(name));
         userExists.tilføjLigaer(liga);
         userRepository.save(userExists);
-
-
-
         return "landingpage";
     }
 }

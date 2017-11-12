@@ -1,10 +1,7 @@
-package dk.KeaExam.Entitys;
+package dk.KeaExam.model;
 
-import dk.KeaExam.model.Liga;
 import dk.KeaExam.model.Player;
 import dk.KeaExam.model.User;
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -17,8 +14,15 @@ public class Team {
     @NotNull
     private String teamName;
 
-    @NotNull
-    private User owner;
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "Teams", joinColumns = @JoinColumn(name="team_name"), inverseJoinColumns = @JoinColumn(name = "player_id"))

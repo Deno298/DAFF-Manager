@@ -1,7 +1,5 @@
 package dk.KeaExam.model;
 
-import dk.KeaExam.Entitys.Team;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

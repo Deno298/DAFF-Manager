@@ -22,13 +22,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="liga, status : ${ligaoverview}">
+        <tr th:each="league, status : ${ligaoverview}">
             <td th:text="${status.count}">1</td>
-            <td th:text="${liga.liganame}">Name</td>
-            <td th:text="${liga.liga_id}">Id</td>
+            <td th:text="${league.leagueName}">Name</td>
+            <td th:text="${league.league_id}">Id</td>
             <td> <span th:text ="${#authentication.getPrincipal().getUsername()}"></span> </td>
-            <td><form th:action="@{/ligaoverview.html}" method="post">
-                <input type="hidden" name="paramName" th:value="${liga.liga_id}"/>
+            <td><form th:action="@{/templates/leagueoverview.html}" method="post">
+                <input type="hidden" name="paramName" th:value="${league.league_id}"/>
                 <input type="password" name="password"/>
                 <button type="submit">Tilmeld</button>
             </form></td>

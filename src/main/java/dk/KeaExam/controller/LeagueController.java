@@ -1,9 +1,8 @@
 package dk.KeaExam.controller;
 
-import dk.KeaExam.model.Liga;
+import dk.KeaExam.model.League;
 import dk.KeaExam.model.User;
-import dk.KeaExam.repository.LigaRepository;
-import dk.KeaExam.repository.PlayerRepository;
+import dk.KeaExam.repository.LeagueRepository;
 import dk.KeaExam.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -16,39 +15,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashSet;
-
 @Controller
-public class LigaController {
+public class LeagueController {
 
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
-    private LigaRepository ligaRepository;
+    private LeagueRepository leagueRepository;
 
-    @RequestMapping("/ligaoverview")
-    public ModelAndView getLiga() {
-        return new ModelAndView("ligaoverview", "ligaoverview", ligaRepository.findAll());
+    @RequestMapping("/leagueoverview")
+    public ModelAndView showAllLeagues() {
+        return new ModelAndView("leagueoverview", "leagueoverview", leagueRepository.findAll());
     }
 
-    @PostMapping("/ligaoverview")
-    public ModelAndView userDelete(@ModelAttribute User user, BindingResult bindingResult, @RequestParam("paramName") Integer liga_id, @RequestParam("password") String password) {
+    @PostMapping("/leagueoverview")
+    public ModelAndView signUpForLeague(@ModelAttribute User user, BindingResult bindingResult, @RequestParam("paramName") Integer liga_id, @RequestParam("password") String password) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        System.out.println(name);
-        System.out.println(password);
-        Liga liga = ligaRepository.getOne(liga_id);
-        System.out.println(liga.getPassword());
-        if(liga.getPassword().equals(password)) {
+        League league = leagueRepository.getOne(liga_id);
+
+        if(league.getPassword().equals(password)){
             User userExists = (userRepository.findByUsername(name));
-            userExists.tilføjLigaer(liga);
+            userExists.addLeague(league);
             userRepository.save(userExists);
             return new ModelAndView("Home", "Home", user);
         }
-        else{
+        else {
+            //Fix error message. Bliver ikke sendt til view.
             bindingResult.rejectValue("password", "Error password", "der er fejl i dit kodeord");
-            return new ModelAndView("ligaoverview", "ligaoverview", ligaRepository.findAll());
+            return new ModelAndView("leagueoverview", "leagueoverview", leagueRepository.findAll());
         }
     }
 }

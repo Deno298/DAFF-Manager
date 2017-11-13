@@ -26,7 +26,7 @@ public class PlayerController {
     private UserRepository userRepository;
 
     @RequestMapping("/search")
-    public ModelAndView getPlayers() {
+    public ModelAndView showAllPlayers() {
         return new ModelAndView("search", "search", playerRepo.findAll());
     }
 

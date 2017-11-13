@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -29,11 +27,16 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         User userExists = (userRepository.findByUsername(name));
-        if (userExists != null && userExists.getLigaer() == null) {
+        if (userExists != null && userExists.getLeagues() == null) {
             userRepository.delete(userExists);
             return "landingpage";
         }
         model.addAttribute("errorMsg", "You are not allowed to delete your account");
         return "editaccount";
+    }
+
+    @GetMapping("/myAccount")
+    public String myAccountGet(){
+        return "myAccount";
     }
 }

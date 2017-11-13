@@ -6,43 +6,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Liga {
+public class League {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer liga_id;
+    private Integer league_id;
 
+    @Column(name = "leagueName")
     @NotNull
-    private String liganame;
+    private String leagueName;
 
     @NotNull
     private String password;
 
-    @ManyToMany(mappedBy = "ligaer")
+    @ManyToMany(mappedBy = "leagues")
     private List<User> users = new ArrayList<>();
 
-    public Liga() {
+    public League() {
     }
 
-    public Liga(String liganame, String password) {
-        this.liganame = liganame;
+    public League(String leagueName, String password) {
+        this.leagueName = leagueName;
         this.password = password;
     }
 
-    public Integer getLiga_id() {
-        return liga_id;
+    public Integer getLeague_id() {
+        return league_id;
     }
 
-    public void setLiga_id(Integer liga_id) {
-        this.liga_id = liga_id;
+    public void setLeague_id(Integer league_id) {
+        this.league_id = league_id;
     }
 
-    public String getLiganame() {
-        return liganame;
+    public String getLeagueName() {
+        return leagueName;
     }
 
-    public void setLiganame(String liganame) {
-        this.liganame = liganame;
+    public void setLeagueName(String leagueName) {
+        this.leagueName = leagueName;
     }
 
     public String getPassword() {
@@ -63,9 +64,9 @@ public class Liga {
 
     @Override
     public String toString() {
-        return "Liga{" +
-                "liga_id=" + liga_id +
-                ", liganame='" + liganame + '\'' +
+        return "League{" +
+                "league_id=" + league_id +
+                ", leagueName='" + leagueName + '\'' +
                 ", password='" + password + '\'' +
                 ", users=" + users +
                 '}';

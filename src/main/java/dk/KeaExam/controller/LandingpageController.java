@@ -7,12 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LandingpageController {
 
     @RequestMapping("/landingpage")
-    public String greetings(){
+    public String landingpage(){
         return "landingpage";
     }
 
-    @RequestMapping("/layout")
-    public String layout() {
-        return "layout";
-    }
 }

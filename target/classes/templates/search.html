@@ -11,6 +11,7 @@
 <main th:replace="layout :: site-sidebar"></main>
 
 <div class="container">
+    <div class="text">
     <input type="text" id="search" placeholder="Type to search"/>
     <table id="table">
         <thead>
@@ -49,9 +50,13 @@
             <td th:text="${player.blitzing}">Blitzing</td>
             <td th:text="${player.manCoverage}">Man Coverage</td>
             <td th:text="${player.zoneCoverage}">Zone Coverage</td>
+            <td><form th:action="@{/search.html}" method="post">
+                <button type="submit">Tilmeld</button>
+            </form></td>
         </tr>
         </tbody>
     </table>
+    </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script  src="../static/js/SearchFunction.js" th:src="@{/js/SearchFunction.js}"></script>

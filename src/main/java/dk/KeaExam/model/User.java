@@ -28,6 +28,19 @@ public class User {
     inverseJoinColumns = @JoinColumn(name = "liga_id"))
     private List<Liga> ligaer = new ArrayList<>();
 
+    @OneToMany
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private List<Team> teams;
+
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void addTeams(Team teams) {
+        this.teams.add(teams);
+    }
+
     public User() {
     }
 

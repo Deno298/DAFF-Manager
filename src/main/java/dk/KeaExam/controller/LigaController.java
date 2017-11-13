@@ -33,14 +33,22 @@ public class LigaController {
     }
 
     @PostMapping("/ligaoverview")
-    public String userDelete(@ModelAttribute User user, @RequestParam("paramName") Integer liga_id) {
+    public ModelAndView userDelete(@ModelAttribute User user, BindingResult bindingResult, @RequestParam("paramName") Integer liga_id, @RequestParam("password") String password) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         System.out.println(name);
+        System.out.println(password);
         Liga liga = ligaRepository.getOne(liga_id);
-        User userExists = (userRepository.findByUsername(name));
-        userExists.tilføjLigaer(liga);
-        userRepository.save(userExists);
-        return "landingpage";
+        System.out.println(liga.getPassword());
+        if(liga.getPassword().equals(password)) {
+            User userExists = (userRepository.findByUsername(name));
+            userExists.tilføjLigaer(liga);
+            userRepository.save(userExists);
+            return new ModelAndView("Home", "Home", user);
+        }
+        else{
+            bindingResult.rejectValue("password", "Error password", "der er fejl i dit kodeord");
+            return new ModelAndView("ligaoverview", "ligaoverview", ligaRepository.findAll());
+        }
     }
 }

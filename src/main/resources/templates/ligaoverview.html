@@ -29,6 +29,7 @@
             <td> <span th:text ="${#authentication.getPrincipal().getUsername()}"></span> </td>
             <td><form th:action="@{/ligaoverview.html}" method="post">
                 <input type="hidden" name="paramName" th:value="${liga.liga_id}"/>
+                <input type="password" name="password"/>
                 <button type="submit">Tilmeld</button>
             </form></td>
         </tr>

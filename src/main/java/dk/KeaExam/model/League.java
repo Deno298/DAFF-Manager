@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class League {
@@ -20,7 +21,7 @@ public class League {
     private String password;
 
     @ManyToMany(mappedBy = "leagues")
-    private List<User> users = new ArrayList<>();
+    private Set<User> users;
 
     public League() {
     }
@@ -54,7 +55,7 @@ public class League {
         this.password = password;
     }
 
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 

@@ -30,16 +30,16 @@ public class LeagueController {
     }
 
     @PostMapping("/leagueoverview")
-    public ModelAndView signUpForLeague(@ModelAttribute User user, BindingResult bindingResult, @RequestParam("paramName") Integer liga_id, @RequestParam("password") String password) {
+    public ModelAndView signUpForLeague(@ModelAttribute User user, BindingResult bindingResult, @RequestParam("paramName") Integer league_id, @RequestParam("password") String password) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        League league = leagueRepository.getOne(liga_id);
+        League league = leagueRepository.getOne(league_id);
 
         if(league.getPassword().equals(password)){
             User userExists = (userRepository.findByUsername(name));
             userExists.addLeague(league);
             userRepository.save(userExists);
-            return new ModelAndView("Home", "Home", user);
+            return new ModelAndView("landingpage", "landingpage", user);
         }
         else {
             //Fix error message. Bliver ikke sendt til view.

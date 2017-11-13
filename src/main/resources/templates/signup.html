@@ -27,7 +27,9 @@
     <div class="text">
         <h2>Fill out the form to sign up!</h2>
         <div class="col-lg-6 col-lg-offset-3">
-            <form th:action="@{/registration}" th:object="${user}" method="post">
+            <form th:action="@{/signup}" th:object="${user}" method="post">
+                <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                       class="validation-message"></label>
                 <div class="form-group input-font">
                     <input type="text" class="form-control" th:field="*{username}" placeholder="Enter Username" required="Required"/>
                 </div>

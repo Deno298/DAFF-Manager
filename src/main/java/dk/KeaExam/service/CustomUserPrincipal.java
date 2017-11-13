@@ -1,5 +1,6 @@
-package dk.KeaExam.model;
+package dk.KeaExam.service;
 
+import dk.KeaExam.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,8 +14,6 @@ public class CustomUserPrincipal implements UserDetails {
         this.user = user;
     }
 
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -22,13 +21,11 @@ public class CustomUserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        System.out.println(user.getPassword());
         return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        System.out.println(user.getUsername());
         return user.getUsername();
     }
 

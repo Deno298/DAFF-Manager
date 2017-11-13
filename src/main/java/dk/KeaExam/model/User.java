@@ -23,10 +23,10 @@ public class User {
     private String email;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "USER_LIGA",
+    @JoinTable(name = "USER_LEAGUE",
     joinColumns = @JoinColumn(name="id"),
-    inverseJoinColumns = @JoinColumn(name = "liga_id"))
-    private List<Liga> ligaer = new ArrayList<>();
+    inverseJoinColumns = @JoinColumn(name = "league_id"))
+    private List<League> leagues = new ArrayList<>();
 
     @OneToMany
     @JoinColumn(name = "id", referencedColumnName = "id")
@@ -82,12 +82,12 @@ public class User {
         this.password = password;
     }
 
-    public List<Liga> getLigaer() {
-        return ligaer;
+    public List<League> getLeagues() {
+        return leagues;
     }
 
-    public void tilføjLigaer(Liga liga) {
-        this.ligaer.add(liga);
+    public void addLeague(League league) {
+        this.leagues.add(league);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", ligaer=" + ligaer +
+                ", leagues=" + leagues +
                 '}';
     }
 }

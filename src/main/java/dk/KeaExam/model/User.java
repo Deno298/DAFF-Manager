@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -26,7 +27,7 @@ public class User {
     @JoinTable(name = "USER_LEAGUE",
     joinColumns = @JoinColumn(name="id"),
     inverseJoinColumns = @JoinColumn(name = "league_id"))
-    private List<League> leagues = new ArrayList<>();
+    private Set<League> leagues;
 
     @OneToMany
     @JoinColumn(name = "id", referencedColumnName = "id")
@@ -82,7 +83,7 @@ public class User {
         this.password = password;
     }
 
-    public List<League> getLeagues() {
+    public Set<League> getLeagues() {
         return leagues;
     }
 

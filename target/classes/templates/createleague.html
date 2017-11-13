@@ -13,11 +13,11 @@
 
 <div class="container">
     <div class="text">
-        <h2>Fill out the form to create a liga!</h2>
+        <h2>Fill out the form to create a league!</h2>
         <div class="col-lg-6 col-lg-offset-3">
-            <form th:action="@{/opretliga.html}" th:object="${liga}" method="post">
+            <form th:action="@{/createleague.html}" th:object="${league}" method="post">
                 <div class="form-group input-font">
-                    <input type="text" class="form-control" th:field="*{liganame}" placeholder="Enter Username" required="Required"/>
+                    <input type="text" class="form-control" th:field="*{leagueName}" placeholder="Enter Username" required="Required"/>
                 </div>
                 <div class="form-group input-font">
                     <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password" required="Required"/>

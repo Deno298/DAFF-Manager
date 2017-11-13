@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,13 +25,15 @@ public class UserController {
 
 
     @PostMapping("/editaccount")
-    public String userDelete(@ModelAttribute User user, BindingResult bindingResult) {
+    public String userDelete(@ModelAttribute User user, ModelMap model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         User userExists = (userRepository.findByUsername(name));
-        if (userExists != null) {
+        if (userExists != null && userExists.getLigaer() == null) {
             userRepository.delete(userExists);
+            return "landingpage";
         }
-        return "landingpage";
+        model.addAttribute("errorMsg", "You are not allowed to delete your account");
+        return "editaccount";
     }
 }

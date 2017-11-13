@@ -17,8 +17,8 @@
 <div class="text">
 <span th:text ="${#authentication.getPrincipal().getId()}"></span>
 </div>
-
-<form th:action="@{/editaccount.html}" method="post">
+<p th:text="${errorMsg}"/>
+<form th:action="@{/editaccount.html}" th:object="${user}" method="post">
     <button type="submit">Delete</button>
 </form>
 

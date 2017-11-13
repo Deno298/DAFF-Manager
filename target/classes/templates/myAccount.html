@@ -15,12 +15,10 @@
 
 <div th:replace="layout :: site-scripts"></div>
 <div class="text">
-<span th:text ="${#authentication.getPrincipal().getId()}"></span>
+<p>Username:
+<span th:text ="${#authentication.getPrincipal().getUsername()}"></span>
+</p>
+    <p>Email: <span th:text ="${#authentication.getPrincipal().getEmail()}"></span></p>
 </div>
-<p th:text="${errorMsg}"/>
-<form th:action="@{/editaccount.html}" th:object="${user}" method="post">
-    <button type="submit">Delete</button>
-</form>
-
 </body>
 </html>

@@ -1,6 +1,8 @@
 package dk.KeaExam.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "player")
@@ -42,6 +44,17 @@ public class Player {
     private int manCoverage;
     @Column(name = "zone_coverage")
     private int zoneCoverage;
+
+    @ManyToMany(mappedBy = "players")
+    private List<Team> teams = new ArrayList<>();
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void addTeams(Team team) {
+        this.teams.add(team);
+    }
 
     public Long getTeamId() {
         return teamId;

@@ -23,6 +23,18 @@ public class League {
     @ManyToMany(mappedBy = "leagues")
     private Set<User> users;
 
+    @NotNull
+    private int owner_id;
+
+
+    public int getOwner_id() {
+        return owner_id;
+    }
+
+    public void setOwner_id(int owner_id) {
+        this.owner_id = owner_id;
+    }
+
     public League() {
     }
 

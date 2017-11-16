@@ -32,6 +32,6 @@ public class DraftPlayersController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         User user = userRepository.findByUsername(name);
-        return new ModelAndView("leagueoverview", "leagueoverview", user);
+        return new ModelAndView("leagueoverview", "leagueoverview", user.getLeagues());
     }
 }

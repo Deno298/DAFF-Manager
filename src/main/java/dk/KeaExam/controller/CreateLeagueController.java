@@ -33,7 +33,7 @@ public class CreateLeagueController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         User user = userRepository.findByUsername(name);
-        league.setOwner_id(user.getId());
+        league.setOwnerid(user.getId());
         leagueRepository.save(league);
         return "landingpage";
     }

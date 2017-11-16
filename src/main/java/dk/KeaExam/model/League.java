@@ -24,15 +24,15 @@ public class League {
     private Set<User> users;
 
     @NotNull
-    private int owner_id;
+    private int ownerid;
 
 
-    public int getOwner_id() {
-        return owner_id;
+    public int getOwnerid() {
+        return ownerid;
     }
 
-    public void setOwner_id(int owner_id) {
-        this.owner_id = owner_id;
+    public void setOwnerid(int ownerid) {
+        this.ownerid = ownerid;
     }
 
     public League() {

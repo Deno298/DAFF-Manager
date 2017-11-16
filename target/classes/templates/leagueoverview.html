@@ -25,9 +25,7 @@
         <tr th:each="league, status : ${leagueoverview}">
             <td th:text="${status.count}">1</td>
             <td th:text="${league.leagueName}">Name</td>
-            <td th:text="${league.league_id}">Id</td>
-            <td> <span th:text ="${#authentication.getPrincipal().getUsername()}"></span> </td>
-            <td>    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button></td>
+            <td>    <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Tilmeld!</button></td>
                 <div class="modal fade" id="myModal" role="dialog">
                     <div class="modal-dialog">
 

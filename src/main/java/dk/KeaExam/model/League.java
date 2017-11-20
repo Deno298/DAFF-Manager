@@ -43,6 +43,18 @@ public class League {
         this.password = password;
     }
 
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void addTeams(Team team) {
+        this.teams.add(team);
+    }
+
+    @OneToMany
+    @JoinColumn(name = "league_id", referencedColumnName = "league_id")
+    private List<Team> teams;
+
     public Integer getLeague_id() {
         return league_id;
     }

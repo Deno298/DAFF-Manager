@@ -39,20 +39,21 @@ public class LeagueController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         League league = leagueRepository.getOne(league_id);
+        Team teamExist = teamRepository.findByTeamName(teamName);
 
-        if(league.getPassword().equals(password)){
+        if(league.getPassword().equals(password) && teamExist == null){
             User userExists = (userRepository.findByUsername(name));
             userExists.addLeague(league);
             Team team = new Team();
             team.setTeamName(teamName);
+            league.addTeams(team);
             userExists.addTeams(team);
             teamRepository.save(team);
             userRepository.save(userExists);
             return new ModelAndView("landingpage", "landingpage", user);
         }
         else {
-            //Fix error message. Bliver ikke sendt til view.
-            bindingResult.rejectValue("password", "Error password", "der er fejl i dit kodeord");
+            bindingResult.rejectValue("password", "Error.password", "der er fejl i dit kodeord");
             return new ModelAndView("leagueoverview", "leagueoverview", leagueRepository.findAll());
         }
     }

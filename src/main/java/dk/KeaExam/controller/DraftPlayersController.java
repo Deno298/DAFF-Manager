@@ -1,6 +1,7 @@
 package dk.KeaExam.controller;
 
 import dk.KeaExam.model.League;
+import dk.KeaExam.model.Team;
 import dk.KeaExam.model.User;
 import dk.KeaExam.repository.LeagueRepository;
 import dk.KeaExam.repository.PlayerRepository;
@@ -41,15 +42,18 @@ public class DraftPlayersController {
         String name = auth.getName();
         User user = userRepository.findByUsername(name);
 
-        return new ModelAndView("leagueDetails", "leagueDetails", model);
-
         //Finder brugerens hold i ligaen
-        
-
-
-
+        for (Team team : user.getTeams()){
+            if(team.getLeague_id() == league_id){
+                model.addAttribute("userTeam", team);
+                System.out.println(team);
+            }
+        }
 
         //et overview over de andre hold der er med i ligaen
+        model.addAttribute("leagueTeams", league.getTeams());
+
+        return new ModelAndView("leagueDetails", "leagueDetails", model);
 
         //Tid til draft
 

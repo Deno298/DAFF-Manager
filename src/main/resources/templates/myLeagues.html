@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http//www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="layout :: site-head">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+<header th:replace="layout :: site-header"></header>
+
+<main th:replace="layout :: site-sidebar"></main>
+
+<div class="container">
+    <div class="text">
+        <input type="text" id="search" placeholder="Type to search"/>
+        <table class = "table" id="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Tilmeld</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="league, status : ${myLeagues}">
+                <td th:text="${status.count}">1</td>
+                <td th:text="${league.leagueName}">Name</td>
+                <form th:action="@{/leagueDetails}" method="get">
+                    <input type="hidden" name="league_id" th:value="${league.league_id}"/>
+                    <button type="submit">Se detaljer</button>
+                </form>
+
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+<div th:replace="layout :: site-scripts"></div>
+
+</body>
+</html>

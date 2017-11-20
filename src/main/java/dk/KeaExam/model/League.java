@@ -90,10 +90,7 @@ public class League {
     @Override
     public String toString() {
         return "League{" +
-                "league_id=" + league_id +
-                ", leagueName='" + leagueName + '\'' +
-                ", password='" + password + '\'' +
-                ", users=" + users +
+                "leagueName='" + leagueName + '\'' +
                 '}';
     }
 }

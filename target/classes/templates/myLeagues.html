@@ -28,7 +28,13 @@
             <tr th:each="league, status : ${myLeagues}">
                 <td th:text="${status.count}">1</td>
                 <td th:text="${league.leagueName}">Name</td>
+                <form th:action="@{/leagueDetails}" method="get">
+                    <input type="hidden" name="league_id" th:value="${league.league_id}"/>
+                    <button type="submit">Se detaljer</button>
+                </form>
+
             </tr>
+
             </tbody>
         </table>
     </div>

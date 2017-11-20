@@ -23,6 +23,18 @@ public class League {
     @ManyToMany(mappedBy = "leagues")
     private Set<User> users;
 
+    @NotNull
+    private int ownerid;
+
+
+    public int getOwnerid() {
+        return ownerid;
+    }
+
+    public void setOwnerid(int ownerid) {
+        this.ownerid = ownerid;
+    }
+
     public League() {
     }
 
@@ -30,6 +42,18 @@ public class League {
         this.leagueName = leagueName;
         this.password = password;
     }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void addTeams(Team team) {
+        this.teams.add(team);
+    }
+
+    @OneToMany
+    @JoinColumn(name = "league_id", referencedColumnName = "league_id")
+    private List<Team> teams;
 
     public Integer getLeague_id() {
         return league_id;
@@ -66,10 +90,7 @@ public class League {
     @Override
     public String toString() {
         return "League{" +
-                "league_id=" + league_id +
-                ", leagueName='" + leagueName + '\'' +
-                ", password='" + password + '\'' +
-                ", users=" + users +
+                "leagueName='" + leagueName + '\'' +
                 '}';
     }
 }

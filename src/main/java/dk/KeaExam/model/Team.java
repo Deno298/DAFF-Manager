@@ -16,6 +16,16 @@ public class Team {
 
     private Integer id;
 
+    private Integer league_id;
+
+    public Integer getLeague_id() {
+        return league_id;
+    }
+
+    public void setLeague_id(Integer league_id) {
+        this.league_id = league_id;
+    }
+
     public Integer getId() {
         return id;
     }

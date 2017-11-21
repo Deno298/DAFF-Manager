@@ -16,9 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 
 @Controller
-public class DraftPlayersController {
+public class LeagueDetailsController {
 
     @Autowired
     private PlayerRepository playerRepository;
@@ -29,7 +33,7 @@ public class DraftPlayersController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/leagueDetails")
+    @GetMapping("/STILLINGEN")
     public ModelAndView CreateLeague(Model model, @RequestParam("league_id") int league_id) {
 
         //Finder ligaen brugeren ønsker at se details for
@@ -50,16 +54,31 @@ public class DraftPlayersController {
             }
         }
 
-        //et overview over de andre hold der er med i ligaen
-        model.addAttribute("leagueTeams", league.getTeams());
-
-        return new ModelAndView("leagueDetails", "leagueDetails", model);
-
-        //Tid til draft
+        //Get all the teams from the selected league and sorting the list based on points.. see team comparable.
+        List<Team> teams =  league.getTeams();
+        Collections.sort(teams);
 
         //Stillingen
+        model.addAttribute("leagueTeams", teams);
+
+
+        //Generating draft-order
+        List<User> hey = new ArrayList<>(league.getUsers());
+        Collections.sort(hey);
+
+        List<User> draftOrder = new ArrayList<>();
+        draftOrder.addAll(hey);
+        Collections.reverse(hey);
+        draftOrder.addAll(hey);
+        for(int i = 0; i < 2; i++){
+            draftOrder.addAll(draftOrder);
+        }
+        model.addAttribute("draftOrder", draftOrder);
+
+        //Tid til draft
+        model.addAttribute("draftOrder", draftOrder);
 
         //return det hele til draft siden
-
+        return new ModelAndView("STILLINGEN", "stillingen", model);
     }
 }

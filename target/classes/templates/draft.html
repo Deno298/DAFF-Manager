@@ -25,16 +25,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="league, status : ${myLeagues}">
+            <tr th:each="player, status : ${players}">
                 <td th:text="${status.count}">1</td>
-                <td th:text="${league.leagueName}">Name</td>
-                <form th:action="@{/STILLINGEN.html}" method="get">
-                    <input type="hidden" name="league_id" th:value="${league.league_id}"/>
+                <td th:text="${player.firstName}">Name</td>
+                <td>
+                <form th:action="@{/draft.html}" method="post">
+
                     <button type="submit">Se detaljer</button>
                 </form>
-
+                </td>
             </tr>
-
             </tbody>
         </table>
     </div>
@@ -42,8 +42,6 @@
 
 
 
-
 <div th:replace="layout :: site-scripts"></div>
-
 </body>
 </html>

@@ -1,9 +1,10 @@
 package dk.KeaExam.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import dk.KeaExam.model.League;
 import dk.KeaExam.model.Team;
-import dk.KeaExam.model.Player;
 import dk.KeaExam.model.User;
+import dk.KeaExam.repository.LeagueRepository;
 import dk.KeaExam.repository.PlayerRepository;
 import dk.KeaExam.repository.TeamRepository;
 import dk.KeaExam.repository.UserRepository;
@@ -11,42 +12,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-import java.util.Set;
-
 @Controller
-public class PlayerController {
+public class DraftController {
 
     @Autowired
-    private PlayerRepository playerRepo;
+    UserRepository userRepository;
 
     @Autowired
-    private TeamRepository teamRepository;
+    TeamRepository teamRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    PlayerRepository playerRepository;
 
-    @RequestMapping("/myLeagues")
-    public ModelAndView showMyLeagues() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        User user = userRepository.findByUsername(name);
-        return new ModelAndView("myLeagues", "myLeagues", user.getLeagues());
+    @Autowired
+    LeagueRepository leagueRepository;
+
+    @GetMapping("/draft")
+    public ModelAndView draftPhase(Model model){
+        League league  = leagueRepository.getOne(1);
+        model.addAttribute("league" , league);
+        model.addAttribute("players" , playerRepository.findAll());
+
+        return new ModelAndView("draft", "draft",model);
     }
 
-    @PostMapping("/search")
-    public String addPlayer(){
-        User user = userRepository.getOne(1);
-        Team team = new Team();
-        team.setTeamName("rød");
-        user.addTeams(team);
-        teamRepository.save(team);
-        userRepository.save(user);
+
+    @PostMapping("/draft")
+    public String addPlayer(@RequestParam("teamName") String teamName, @RequestParam("playerId") int playerId,
+                                @RequestParam("leagueId") int leagueId ){
+
+
+
+
+
         return "search";
     }
 

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http//www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head th:replace="layout :: site-head">
-    <link rel="stylesh  eet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link rel="buttonstyle" href="../static/css/buttonstyle.css" th:href="@{/css/buttonstyle.css}"/>
 </head>
 
 <body>
@@ -13,27 +13,19 @@
 
 <main th:replace="layout :: site-sidebar"></main>
 
-<div class="container">
+<div  class="container" id="wrapper">
     <div class="text">
-        <p>hej</p>
-        <div id="countdowntimer"><span id="future_date"></span></div>
-        <script type="text/javascript">
-            $(function() {
-                $("#future_date").countdowntimer({
-                    dateAndTime : "2020/01/01 00:00:00",
-                    size : "lg"
-                });
-            });
-        </script>
+    <p id="demo"></p>
+        <input type="hidden" id="draftdate" th:value="${drafttime.draftDate}"/>
+    <button type = "button" id="myBtn" class="btnDisable" disabled="true" > Please wait...</button>
+        <span th:text="${drafttime.draftDate}"></span>
 
     </div>
 </div>
 
 
 
-
-
-
+<script  src="../static/js/buttondisable.js" th:src="@{/js/buttondisable.js}"></script>
 <div th:replace="layout :: site-scripts"></div>
 </body>
 </html>

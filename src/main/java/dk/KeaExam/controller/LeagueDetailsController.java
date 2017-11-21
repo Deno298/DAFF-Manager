@@ -39,7 +39,7 @@ public class LeagueDetailsController {
         //Finder ligaen brugeren ønsker at se details for
         League league = leagueRepository.getOne(league_id);
         League leaguee = leagueRepository.getOne(2);
-
+        model.addAttribute("drafttime", league);
 
         //Finder brugeren
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

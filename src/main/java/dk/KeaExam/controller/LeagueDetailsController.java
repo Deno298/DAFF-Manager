@@ -79,6 +79,6 @@ public class LeagueDetailsController {
         model.addAttribute("draftOrder", draftOrder);
 
         //return det hele til draft siden
-        return new ModelAndView("STILLINGEN", "stillingen", model);
+        return new ModelAndView("leagueDetails", "leagueDetails", model);
     }
 }

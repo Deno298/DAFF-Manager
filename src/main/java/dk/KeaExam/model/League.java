@@ -2,6 +2,7 @@ package dk.KeaExam.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,8 +28,16 @@ public class League {
     @NotNull
     private int ownerid;
 
-    @Temporal(TemporalType.DATE)
-    private Date draftDate;
+    @Column
+    private LocalDateTime draftDate;
+
+    public LocalDateTime getDraftDate() {
+        return draftDate;
+    }
+
+    public void setDraftDate(LocalDateTime draftDate) {
+        this.draftDate = draftDate;
+    }
 
     public int getOwnerid() {
         return ownerid;

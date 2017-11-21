@@ -13,6 +13,35 @@
 
 <main th:replace="layout :: site-sidebar"></main>
 
+<div class="container">
+    <div class="text">
+        <input type="text" id="search" placeholder="Type to search"/>
+        <table class = "table" id="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Tilmeld</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="player, status : ${players}">
+                <td th:text="${status.count}">1</td>
+                <td th:text="${player.firstName}">Name</td>
+                <td>
+                <form th:action="@{/draft.html}" method="post">
+
+                    <button type="submit">Se detaljer</button>
+                </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
 <div th:replace="layout :: site-scripts"></div>
 </body>
 </html>

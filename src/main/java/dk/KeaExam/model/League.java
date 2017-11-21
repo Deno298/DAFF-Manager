@@ -99,6 +99,14 @@ public class League {
         this.users.add(user);
     }
 
+    public boolean containsUser(User user){
+        boolean containsUser = false;
+        if(this.getUsers().contains(user)){
+            containsUser = true;
+        }
+        return containsUser;
+    }
+
     @Override
     public String toString() {
         return "League{" +

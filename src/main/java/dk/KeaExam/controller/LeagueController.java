@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Iterator;
+import java.util.List;
+
 @Controller
 public class LeagueController {
 
@@ -31,7 +34,25 @@ public class LeagueController {
 
     @RequestMapping("/leagueoverview")
     public ModelAndView showAllLeagues() {
-        return new ModelAndView("leagueoverview", "leagueoverview", leagueRepository.findAll());
+        //Finds the logged in user
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User user = userRepository.findByUsername(name);
+
+        //Get all leagues
+        List<League> leagues = leagueRepository.findAll();
+
+        //Iterate through them, if the user exist remove the league from the list
+        for (Iterator<League> it = leagues.iterator(); it.hasNext();){
+            League league = it.next();
+            if(league.containsUser(user)){
+                it.remove();
+            }
+        }
+
+        System.out.println(leagues);
+
+        return new ModelAndView("leagueoverview", "leagueoverview", leagues);
     }
 
     @PostMapping("/leagueoverview")

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Team {
+public class Team implements Comparable<Team> {
 
     @Id
     @NotNull
@@ -18,8 +18,58 @@ public class Team {
 
     private Integer league_id;
 
+    private int wins;
+
+    private int loses;
+
+    private int draws;
+
+    private int winPercentage;
+
+    private int points;
+
+    public int getDraws() {
+        return draws;
+    }
+
+    public void setDraws(int draws) {
+        this.draws = draws;
+    }
+
+    public int getWinPercentage() {
+        return winPercentage;
+    }
+
+    public void setWinPercentage(int winPercentage) {
+        this.winPercentage = winPercentage;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
     public Integer getLeague_id() {
         return league_id;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public int getLoses() {
+        return loses;
+    }
+
+    public void setLoses(int loses) {
+        this.loses = loses;
     }
 
     public void setLeague_id(Integer league_id) {
@@ -54,5 +104,15 @@ public class Team {
         this.players.add(players);
     }
 
+    @Override
+    public int compareTo(Team team){
+        return team.getPoints() - this.points;
+    }
 
+    @Override
+    public String toString() {
+        return "Team{" +
+                "points=" + points +
+                '}';
+    }
 }

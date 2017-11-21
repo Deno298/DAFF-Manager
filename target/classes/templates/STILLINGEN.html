@@ -15,28 +15,31 @@
 
 <div class="container">
     <div class="text">
-        <input type="text" id="search" placeholder="Type to search"/>
         <table class = "table" id="table">
             <thead>
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Tilmeld</th>
+                <th>Wins</th>
+                <th>Loses</th>
+                <th>Draws</th>
+                <th>Points</th>
+                <th>Win Percentage</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="league, status : ${myLeagues}">
+            <tr th:each="team, status : ${leagueTeams}">
                 <td th:text="${status.count}">1</td>
-                <td th:text="${league.leagueName}">Name</td>
-                <form th:action="@{/STILLINGEN.html}" method="get">
-                    <input type="hidden" name="league_id" th:value="${league.league_id}"/>
-                    <button type="submit">Se detaljer</button>
-                </form>
-
+                <td th:text="${team.teamName}">1</td>
+                <td th:text="${team.wins}">1</td>
+                <td th:text="${team.loses}">1</td>
+                <td th:text="${team.draws}">1</td>
+                <td th:text="${team.points}">1</td>
+                <td th:text="${team.winPercentage + '%'}">1</td>
             </tr>
-
             </tbody>
         </table>
+        <span th:text = "${draftOrder[1]}"></span>
     </div>
 </div>
 
@@ -44,6 +47,5 @@
 
 
 <div th:replace="layout :: site-scripts"></div>
-
 </body>
 </html>

@@ -4,10 +4,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 @Entity
-public class User {
+public class User implements Comparable<User>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -91,14 +92,17 @@ public class User {
         this.leagues.add(league);
     }
 
+
+    @Override
+    public int compareTo(User user){
+        Random rng = new Random();
+        return rng.nextInt() * 2 - 1;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", leagues=" + leagues +
+                "username='" + username + '\'' +
                 '}';
     }
 }

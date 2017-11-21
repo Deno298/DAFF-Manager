@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
-public class PlayerController {
+public class MyLeagueController {
 
     @Autowired
     private PlayerRepository playerRepo;

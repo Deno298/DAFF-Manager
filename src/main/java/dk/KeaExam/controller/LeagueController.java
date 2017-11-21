@@ -36,18 +36,28 @@ public class LeagueController {
 
     @PostMapping("/leagueoverview")
     public ModelAndView signUpForLeague(@ModelAttribute User user, BindingResult bindingResult, @RequestParam("paramName") Integer league_id, @RequestParam("password") String password, @RequestParam("teamName") String teamName) {
+
+        //Finding currently loggedin user name
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        League league = leagueRepository.getOne(league_id);
-        Team teamExist = teamRepository.findByTeamName(teamName);
 
+        //finding the league the user pressed on
+        League league = leagueRepository.getOne(league_id);
+
+        //checks if the users requested teamname already exists in the database
+        Team teamExist = teamRepository.findByTeamName(teamName);
         if(league.getPassword().equals(password) && teamExist == null){
+            //retrieve the user from the database so we can add him to the league
             User userExists = (userRepository.findByUsername(name));
             userExists.addLeague(league);
+
+            //creates and adds team
             Team team = new Team();
             team.setTeamName(teamName);
             league.addTeams(team);
             userExists.addTeams(team);
+
+            //saving
             teamRepository.save(team);
             userRepository.save(userExists);
             return new ModelAndView("landingpage", "landingpage", user);

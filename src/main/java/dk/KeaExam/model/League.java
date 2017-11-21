@@ -3,6 +3,7 @@ package dk.KeaExam.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -26,6 +27,8 @@ public class League {
     @NotNull
     private int ownerid;
 
+    @Temporal(TemporalType.DATE)
+    private Date draftDate;
 
     public int getOwnerid() {
         return ownerid;

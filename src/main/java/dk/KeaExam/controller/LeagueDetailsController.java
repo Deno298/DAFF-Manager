@@ -33,8 +33,8 @@ public class LeagueDetailsController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/STILLINGEN")
-    public ModelAndView CreateLeague(Model model, @RequestParam("league_id") int league_id) {
+    @GetMapping("/leaguedetails")
+    public ModelAndView LeagueDetails(Model model, @RequestParam("league_id") int league_id) {
 
         //Finder ligaen brugeren ønsker at se details for
         League league = leagueRepository.getOne(league_id);

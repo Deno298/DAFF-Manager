@@ -4,7 +4,7 @@
       xmlns:sec="http//www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head th:replace="layout :: site-head">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesh  eet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 </head>
 
 <body>
@@ -15,9 +15,18 @@
 
 <div class="container">
     <div class="text">
-    <span th:text="|Hello ${league1.leagueName}|"/>
-    <span th:text="|Hello ${league2}|"/>
-</div>
+        <p>hej</p>
+        <div id="countdowntimer"><span id="future_date"></span></div>
+        <script type="text/javascript">
+            $(function() {
+                $("#future_date").countdowntimer({
+                    dateAndTime : "2020/01/01 00:00:00",
+                    size : "lg"
+                });
+            });
+        </script>
+
+    </div>
 </div>
 
 

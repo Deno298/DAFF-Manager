@@ -53,7 +53,7 @@ public class LeagueDetailsController {
         }
 
         //Get all the teams from the selected league and sorting the list based on points.. see team comparable.
-        List<Team> teams = league.getTeams();
+        List<Team> teams = new ArrayList<>( league.getTeams());
         Collections.sort(teams);
 
         //Stillingen

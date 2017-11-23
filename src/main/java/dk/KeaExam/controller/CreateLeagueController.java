@@ -49,11 +49,6 @@ public class CreateLeagueController {
         LocalDateTime date = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
         league.setDraftDate(date);
 
-        //Setting the draft format
-        league.setDraftFormat(draftFormat);
-
-        //Setting the league format
-        league.setLeagueFormat(leagueFormat);
 
         //setting owner of the league
         league.setOwnerid(user.getId());

@@ -49,7 +49,6 @@ public class LeagueDetailsController {
         for (Team team : user.getTeams()) {
             if (team.getLeague_id() == league_id) {
                 model.addAttribute("userTeam", team);
-                System.out.println(team);
             }
         }
 
@@ -60,19 +59,16 @@ public class LeagueDetailsController {
         //Stillingen
         model.addAttribute("leagueTeams", teams);
 
-
         //Generating draft-order
-        List<User> draftOrder = createDraftOrder(new ArrayList<>(league.getUsers()), "snake");
-        System.out.println(draftOrder);
+        List<User> draftOrder = createDraftOrder(new ArrayList<>(league.getUsers()), "sne");
 
-        model.addAttribute("draftOrder", draftOrder);
-
-        //Tid til draft
         model.addAttribute("draftOrder", draftOrder);
 
         //return det hele til draft siden
         return new ModelAndView("leagueDetails", "leagueDetails", model);
     }
+
+
 
     public List<User> createDraftOrder(ArrayList<User> usersInLeague, String draftType) {
 

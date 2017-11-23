@@ -37,7 +37,8 @@ public class CreateLeagueController {
 
     @PostMapping("/createleague")
     public String CreateLeague(League league,@RequestParam("year") int year, @RequestParam("month") int month,
-                               @RequestParam("dayOfMonth") int dayOfMonth, @RequestParam("hour") int hour, @RequestParam("minute") int minute){
+                               @RequestParam("dayOfMonth") int dayOfMonth, @RequestParam("hour") int hour, @RequestParam("minute") int minute,
+                               @RequestParam("draftformat") int draftFormat, @RequestParam("leagueformat") int leagueFormat){
 
         //Finding currently logged in user
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -47,6 +48,12 @@ public class CreateLeagueController {
         //Setting the draft date
         LocalDateTime date = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
         league.setDraftDate(date);
+
+        //Setting the draft format
+        league.setDraftFormat(draftFormat);
+
+        //Setting the league format
+        league.setLeagueFormat(leagueFormat);
 
         //setting owner of the league
         league.setOwnerid(user.getId());

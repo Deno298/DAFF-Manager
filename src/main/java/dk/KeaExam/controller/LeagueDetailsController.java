@@ -38,7 +38,6 @@ public class LeagueDetailsController {
 
         //Finder ligaen brugeren ønsker at se details for
         League league = leagueRepository.getOne(league_id);
-        League leaguee = leagueRepository.getOne(2);
         model.addAttribute("drafttime", league);
 
         //Finder brugeren
@@ -47,15 +46,15 @@ public class LeagueDetailsController {
         User user = userRepository.findByUsername(name);
 
         //Finder brugerens hold i ligaen
-        for (Team team : user.getTeams()){
-            if(team.getLeague_id() == league_id){
+        for (Team team : user.getTeams()) {
+            if (team.getLeague_id() == league_id) {
                 model.addAttribute("userTeam", team);
                 System.out.println(team);
             }
         }
 
         //Get all the teams from the selected league and sorting the list based on points.. see team comparable.
-        List<Team> teams =  league.getTeams();
+        List<Team> teams = league.getTeams();
         Collections.sort(teams);
 
         //Stillingen
@@ -63,16 +62,9 @@ public class LeagueDetailsController {
 
 
         //Generating draft-order
-        List<User> hey = new ArrayList<>(league.getUsers());
-        Collections.sort(hey);
+        List<User> draftOrder = createDraftOrder(new ArrayList<>(league.getUsers()), "snake");
+        System.out.println(draftOrder);
 
-        List<User> draftOrder = new ArrayList<>();
-        draftOrder.addAll(hey);
-        Collections.reverse(hey);
-        draftOrder.addAll(hey);
-        for(int i = 0; i < 2; i++){
-            draftOrder.addAll(draftOrder);
-        }
         model.addAttribute("draftOrder", draftOrder);
 
         //Tid til draft
@@ -81,4 +73,29 @@ public class LeagueDetailsController {
         //return det hele til draft siden
         return new ModelAndView("leagueDetails", "leagueDetails", model);
     }
+
+    public List<User> createDraftOrder(ArrayList<User> usersInLeague, String draftType) {
+
+        int repeater = 3;
+        //list we wants to return
+        List<User> draftOrder = new ArrayList<>();
+
+        //Randomizes order of users, users comparable method returns a random value
+        Collections.sort(usersInLeague);
+
+        //adds user to final list
+        draftOrder.addAll(usersInLeague);
+
+        if(draftType.equals("snake")) {
+            Collections.reverse(usersInLeague);
+            draftOrder.addAll(usersInLeague);
+            repeater = 2;
+        }
+        for (int i = 0; i < repeater; i++) {
+            draftOrder.addAll(draftOrder);
+        }
+
+        return draftOrder;
+    }
+
 }

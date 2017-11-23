@@ -39,7 +39,6 @@ public class DraftController {
         League league  = leagueRepository.getOne(1);
         model.addAttribute("league" , league);
         model.addAttribute("players" , playerRepository.findAll());
-
         return new ModelAndView("draft", "draft",model);
     }
 

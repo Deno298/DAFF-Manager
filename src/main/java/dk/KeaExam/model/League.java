@@ -22,6 +22,12 @@ public class League {
     @NotNull
     private String password;
 
+    @Column(name = "draft_format")
+    private int draftFormat;
+
+    @Column(name = "league_format")
+    private int leagueFormat;
+
     @ManyToMany(mappedBy = "leagues")
     private Set<User> users;
 
@@ -97,6 +103,22 @@ public class League {
 
     public void addUsers(User user) {
         this.users.add(user);
+    }
+
+    public int getDraftFormat() {
+        return draftFormat;
+    }
+
+    public void setDraftFormat(int draftFormat) {
+        this.draftFormat = draftFormat;
+    }
+
+    public int getLeagueFormat() {
+        return leagueFormat;
+    }
+
+    public void setLeagueFormat(int leagueFormat) {
+        this.leagueFormat = leagueFormat;
     }
 
     public boolean containsUser(User user){

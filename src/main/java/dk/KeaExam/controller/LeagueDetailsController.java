@@ -6,6 +6,7 @@ import dk.KeaExam.model.Team;
 import dk.KeaExam.model.User;
 import dk.KeaExam.repository.LeagueRepository;
 import dk.KeaExam.repository.MatchScheduleRepository;
+import dk.KeaExam.repository.TeamRepository;
 import dk.KeaExam.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -23,6 +24,9 @@ import java.util.List;
 
 @Controller
 public class LeagueDetailsController {
+
+    @Autowired
+    private TeamRepository teamRepository;
 
     @Autowired
     private MatchScheduleRepository matchScheduleRepository;
@@ -106,9 +110,7 @@ public class LeagueDetailsController {
         List<Team> schedule = new ArrayList<>();
 
         //In case of odd numbered teams add a "bye" team
-        Team bye = new Team();
-        bye.setTeamName("bye");
-
+        Team bye = teamRepository.findByTeamName("test");
 
         if(listTeam.size() % 2 != 0){
             listTeam.add(bye);

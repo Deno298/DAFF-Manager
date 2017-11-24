@@ -111,8 +111,6 @@ public class Team implements Comparable<Team> {
 
     @Override
     public String toString() {
-        return "Team{" +
-                "points=" + points +
-                '}';
+        return teamName;
     }
 }

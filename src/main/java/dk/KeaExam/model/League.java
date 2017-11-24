@@ -1,10 +1,10 @@
 package dk.KeaExam.model;
 
+import com.fasterxml.jackson.databind.deser.DataFormatReaders;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -18,6 +18,14 @@ public class League {
     @Column(name = "leagueName")
     @NotNull
     private String leagueName;
+
+    public List<MatchSchedule> getMatches() {
+        return matches;
+    }
+
+    public void addMatches(MatchSchedule matches) {
+        this.matches.add(matches);
+    }
 
     @NotNull
     private String password;
@@ -66,6 +74,12 @@ public class League {
     @OneToMany
     @JoinColumn(name = "league_id", referencedColumnName = "league_id")
     private List<Team> teams;
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "league_id", referencedColumnName = "league_id")
+    private List<MatchSchedule> matches;
+
 
     public Integer getLeague_id() {
         return league_id;

@@ -1,6 +1,7 @@
 package dk.KeaExam.controller;
 
 import dk.KeaExam.model.Team;
+import dk.KeaExam.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +14,9 @@ import java.util.List;
 public class HomeController {
 
     @RequestMapping("/")
-    public String index() {
-        return "Home";
+    public String index(Model model) {
+        model.addAttribute("user", new User());
+        return "home";
     }
 
 }

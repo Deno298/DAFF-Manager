@@ -1,12 +1,130 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../static/css/homepage.css"
-          th:href="@{/css/homepage.css}" />
-</head>
+    <meta charset="UTF-8"/>
+    <title>Daff Fantasy</title>
+    <!-- <link rel="stylesheet" href="../static/css/font-awesome.css" th:href="@{/css/font-awesome.min.css}"/> -->
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="../static/css/homepage.css" th:href="@{/css/homepage.css}"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
 
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <div class="container">
+        <button class="navbar-toggler" data-toggle="collapse" data-target ="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a href="index.html" class="navbar-brand">Daff Fantasy</a>
+        <div class="collapse navbar-collapse" id="navbarCollapse"></div>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="#Login" class="nav-link">Login</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HOME SECTION -->
+<header class="home-section">
+    <div class="dark-overlay">
+        <div class="home-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 d-none d-lg-block">
+
+                        <div class="padding-checkboxes"></div>
+                        <div class="d-flex flex-row">
+                        <div class="p-4 align-self-start">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <div class="p-4 align-self-end ">
+                            <h1>Pick Your Squad!</h1>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row">
+                        <div class="p-4 align-self-start">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <div class="p-4 align-self-end">
+                            <h1>Create and Join Leagues!</h1>
+                        </div>
+                    </div>
+                    </div>
+
+
+
+                <div class="col-lg-4">
+                        <div class="card bg-primary text-center card-form">
+                            <div class="card-body">
+                                <h3>Sign Up Today</h3>
+                                <p>Please fill out this form to register</p>
+                                <form th:action="@{/signup}" th:object="${user}" method="post">
+                                    <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                                           class="validation-message alert-danger"></label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control-lg" th:field="*{username}" placeholder="Enter Username" required="Required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control-lg" th:field="*{email}" placeholder="Email" required="Required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control-lg" id="password" th:field="*{password}" placeholder="Password" required="Required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control-lg" id="confirm_password"  placeholder="Confirm Password" required="Required"/>
+                                    </div>
+                                    <input type="submit" class="btn btn-outline-light btn-block"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="login-head-section">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div class="py-5">
+                    <h1 class="display 4">Explore</h1>
+                    <p class="lead"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam tempore distinctio tenetur dolorum, fuga laboriosam temporibus veritatis doloremque! Error nostrum amet libero ut debitis blanditiis deserunt mollitia officia assumenda ad.</p>
+                    <a href="#" class="btn btn-outline-secondary">Find out more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../static/js/jquery.min.js" th:src="@{js/jquery.min.js}"></script>
+<script src="../static/js/bootstrap.min.js" th:src="@{js/bootstrap.min.js}"></script>
+<script src="../static/js/passwordValidation.js" th:src="@{/js/passwordValidation.js}"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Old Login Section
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 <body class="new">
 
 <div class="container">
@@ -33,4 +151,4 @@
 
 
 </body>
-</html>
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->

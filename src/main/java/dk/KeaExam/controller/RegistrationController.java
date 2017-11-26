@@ -3,11 +3,18 @@ package dk.KeaExam.controller;
 import dk.KeaExam.service.CustomUserDetailService;
 import dk.KeaExam.model.User;
 import dk.KeaExam.repository.UserRepository;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -32,11 +39,14 @@ public class RegistrationController {
                 bindingResult.rejectValue("username", "error.user", "There is already a user with that username");
             }
             if(bindingResult.hasErrors()){
-                return"signup";
+                return"home";
             }
             customUserDetailService.registerUser(user);
-            return "landingpage";
+
+            return "home";
         }
+
+
     }
 
 

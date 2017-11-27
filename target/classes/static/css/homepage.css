@@ -16,7 +16,7 @@ body{
 }
 
 .padding-checkboxes{
-    padding-top: 23%;
+    padding-top: 15%;
 }
 
 .home-inner{
@@ -28,7 +28,7 @@ body{
 }
 
 .dark-overlay{
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.05);
     position: absolute;
     top: 0;
     left: 0;
@@ -45,3 +45,5 @@ body{
     font-size: 30px;
 
 }
+
+

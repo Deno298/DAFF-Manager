@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Index</title>
+    <!-- <link rel="stylesheet" href="../static/css/font-awesome.css" th:href="@{/css/font-awesome.min.css}"/> -->
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+    <div class="container">
+        <a href="index.html" class="navbar-brand">Blogen</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item px-2">
+                    <a href="index.html" class="nav-link active">Dashboard</a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="posts.html" class="nav-link">Posts</a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="categories.html" class="nav-link">Categories</a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="users.html" class="nav-link">Users</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown mr-3">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user"></i> Welcome Brad
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="fa fa-user-circle"></i> Profile
+                        </a>
+                        <a href="settings.html" class="dropdown-item">
+                            <i class="fa fa-gear"></i> Settings
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link">
+                        <i class="fa fa-user-times"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header id="main-header" class="py-2 bg-primary text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1><i class="fa fa-gear"></i> Dashboard</h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ACTIONS -->
+<section id="action" class="py-4 mb-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addPostModal">
+                    <i class="fa fa-plus"></i> Opret liga
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addCategoryModal">
+                    <i class="fa fa-plus"></i> Tilmeld liga
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target="#addUserModal">
+                    <i class="fa fa-plus"></i> Add User
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- POSTS -->
+<section id="posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Latest Posts</h4>
+                    </div>
+                    <table class="table table-striped">
+                        <thead class="thead-inverse">
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Date Posted</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td scope="row">1</td>
+                            <td>Post One</td>
+                            <td>Web Development</td>
+                            <td>July 12, 2017</td>
+                            <td><a href="details.html" class="btn btn-secondary">
+                                <i class="fa fa-angle-double-right"></i> Details
+                            </a></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">2</td>
+                            <td>Post Two</td>
+                            <td>Tech Gadgets</td>
+                            <td>July 13, 2017</td>
+                            <td><a href="details.html" class="btn btn-secondary">
+                                <i class="fa fa-angle-double-right"></i> Details
+                            </a></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">3</td>
+                            <td>Post Three</td>
+                            <td>Web Development</td>
+                            <td>July 14, 2017</td>
+                            <td><a href="details.html" class="btn btn-secondary">
+                                <i class="fa fa-angle-double-right"></i> Details
+                            </a></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">4</td>
+                            <td>Post Four</td>
+                            <td>Business</td>
+                            <td>July 14, 2017</td>
+                            <td><a href="details.html" class="btn btn-secondary">
+                                <i class="fa fa-angle-double-right"></i> Details
+                            </a></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">5</td>
+                            <td>Post Five</td>
+                            <td>Web Development</td>
+                            <td>July 15 2017</td>
+                            <td><a href="details.html" class="btn btn-secondary">
+                                <i class="fa fa-angle-double-right"></i> Details
+                            </a></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">6</td>
+                            <td>Post Six</td>
+                            <td>Health  Wellness</td>
+                            <td>July 16, 2017</td>
+                            <td><a href="details.html" class="btn btn-secondary">
+                                <i class="fa fa-angle-double-right"></i> Details
+                            </a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center bg-primary text-white mb-3">
+                    <div class="card-body">
+                        <h3>Posts</h3>
+                        <h1 class="display-4">
+                            <i class="fa fa-pencil"></i> 6
+                        </h1>
+                        <a href="posts.html" class="btn btn-outline-light btn-sm">View</a>
+                    </div>
+                </div>
+
+                <div class="card text-center bg-success text-white mb-3">
+                    <div class="card-body">
+                        <h3>Categories</h3>
+                        <h1 class="display-4">
+                            <i class="fa fa-folder-open-o"></i> 4
+                        </h1>
+                        <a href="categories.html" class="btn btn-outline-light btn-sm">View</a>
+                    </div>
+                </div>
+
+                <div class="card text-center bg-warning text-white mb-3">
+                    <div class="card-body">
+                        <h3>Users</h3>
+                        <h1 class="display-4">
+                            <i class="fa fa-users"></i> 2
+                        </h1>
+                        <a href="users.html" class="btn btn-outline-light btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="main-footer" class="bg-dark text-white mt-5 p-5">
+    <div class="conatiner">
+        <div class="row">
+            <div class="col">
+                <p class="lead text-center">Copyright &copy; 2017 Blogen</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- POST MODAL -->
+<div class="modal fade" id="addPostModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Opret liga</h5>
+                <button class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/createleague.html}" th:object="${league}" method="post">
+
+                    <div class="form-group">
+                        <label>Liga navn</label>
+                        <input type="text" class="form-control" th:field="*{leagueName}" placeholder="Enter Username" required="Required"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Liga password</label>
+                        <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password" required="Required"/>
+                    </div>
+
+                    <div class="row">
+                        <div class="px-lg-3">
+                        <label>Start tidspunkt for draft:</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-2">
+
+                            <input type="text" class="form-control" name="year" placeholder="År" required="Required"/>
+                        </div>
+
+                        <div class="form-group col-lg-2">
+                            <input type="text" class="form-control" name="month" placeholder="Måned" required="Required"/>
+                        </div>
+
+                        <div class="form-group col-lg-2">
+                            <input type="text" class="form-control" name="dayOfMonth" placeholder="Dag" required="Required"/>
+                        </div>
+
+
+                        <div class="form-group col-lg-2">
+                            <input type="text" class="form-control" name="hour" placeholder="Timer" required="Required"/>
+                        </div>
+
+                        <div class="form-group col-lg-2">
+                            <input type="text" class="form-control" name="minute" placeholder="Minutter" required="Required"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" name="draftFormat" value="1" required="Required"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" name="leagueFormat" value="1" required="Required"/>
+                        </div>
+
+                        <button type="submit" value="login" class="btn btn-default">Opret Liga</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- CATEGORY MODAL -->
+<div class="modal fade" id="addCategoryModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Add Category</h5>
+                <button class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-success" data-dismiss="modal">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- USER MODAL -->
+<div class="modal fade" id="addUserModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title">Add User</h5>
+                <button class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" class="form-control"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-warning" data-dismiss="modal">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

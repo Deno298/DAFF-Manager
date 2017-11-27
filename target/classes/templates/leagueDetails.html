@@ -18,8 +18,50 @@
     <p id="demo"></p>
         <input type="hidden" id="draftdate" th:value="${drafttime.draftDate}"/>
     <button type = "button" id="myBtn" class="btnDisable" disabled="true" > Please wait...</button>
-        <span th:text="${drafttime.draftDate}"></span>
+                <table class = "table" id="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Wins</th>
+                        <th>Loses</th>
+                        <th>Draws</th>
+                        <th>Points</th>
+                        <th>Win Percentage</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="team, status : ${leagueTeams}">
+                        <td th:text="${status.count}">1</td>
+                        <td th:text="${team.teamName}">1</td>
+                        <td th:text="${team.wins}">1</td>
+                        <td th:text="${team.loses}">1</td>
+                        <td th:text="${team.draws}">1</td>
+                        <td th:text="${team.points}">1</td>
+                        <td th:text="${team.winPercentage + '%'}">1</td>
+                    </tr>
+                    </tbody>
+                </table>
 
+        <table class = "table">
+            <thead>
+            <tr>
+                <th>Upcoming matches</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${leagueTeams[1].teamName} "></td>
+                <td> VS </td>
+                <td th:text=" ${leagueTeams[2].teamName}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+
+                <span th:text = "${draftOrder[1]}"></span>
     </div>
 </div>
 

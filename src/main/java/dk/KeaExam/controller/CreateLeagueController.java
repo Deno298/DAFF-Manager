@@ -52,7 +52,7 @@ public class CreateLeagueController {
 
         //saving league
         leagueRepository.save(league);
-        return "landingpage";
+        return "index";
     }
 
     public void draftdate (String year, String month, String day, String hour, String minute, League league) {

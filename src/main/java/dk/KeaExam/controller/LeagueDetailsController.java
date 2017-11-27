@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -42,7 +44,7 @@ public class LeagueDetailsController {
 
         //Finder ligaen brugeren ønsker at se details for
         League league = leagueRepository.getOne(league_id);
-        model.addAttribute("drafttime", league);
+        System.out.println(league);
 
         //Finder brugeren
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -55,6 +57,10 @@ public class LeagueDetailsController {
                 model.addAttribute("userTeam", team);
             }
         }
+
+        //Get draftdate
+        String strDraftDate = ReverseDraftDate(league);
+        model.addAttribute("draftstring", strDraftDate);
 
         //Get all the teams from the selected league and sorting the list based on points.. see team comparable.
         List<Team> teams = new ArrayList<>( league.getTeams());
@@ -153,6 +159,15 @@ public class LeagueDetailsController {
         league.addMatches(matchSchedule);
         leagueRepository.save(league);
 
+    }
+
+    public String ReverseDraftDate (League league) {
+
+        LocalDateTime localDateTime = league.getDraftDate();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String reversedDraftDate = localDateTime.format(dtf);
+        System.out.println(reversedDraftDate);
+        return reversedDraftDate;
     }
 
 }

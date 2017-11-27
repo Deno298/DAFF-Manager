@@ -15,8 +15,9 @@
 
 <div  class="container" id="wrapper">
     <div class="text">
-    <p id="demo"></p>
-        <input type="hidden" id="draftdate" th:value="${drafttime.draftDate}"/>
+    <p id="countdown"></p>
+        <input type="hidden" id="draftdate" th:value="${draftstring}"/>
+        <input type="text" name="drafttime" th:value="${draftstring}"/>
     <button type = "button" id="myBtn" class="btnDisable" disabled="true" > Please wait...</button>
                 <table class = "table" id="table">
                     <thead>
@@ -51,9 +52,9 @@
             </thead>
             <tbody>
             <tr>
-                <td th:text="${leagueTeams[1].teamName} "></td>
+                <td th:text="${leagueTeams[0].teamName} "></td>
                 <td> VS </td>
-                <td th:text=" ${leagueTeams[2].teamName}"></td>
+                <td th:text=" ${leagueTeams[1].teamName}"></td>
             </tr>
             </tbody>
         </table>

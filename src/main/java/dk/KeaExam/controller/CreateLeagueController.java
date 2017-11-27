@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
+
 
 
 @Controller
@@ -36,8 +35,8 @@ public class CreateLeagueController {
     }
 
     @PostMapping("/createleague")
-    public String CreateLeague(League league,@RequestParam("year") int year, @RequestParam("month") int month,
-                               @RequestParam("dayOfMonth") int dayOfMonth, @RequestParam("hour") int hour, @RequestParam("minute") int minute,
+    public String CreateLeague(League league,@RequestParam("year") String year, @RequestParam("month") String month,
+                               @RequestParam("dayOfMonth") String dayOfMonth, @RequestParam("hour") String hour, @RequestParam("minute") String minute,
                                @RequestParam("draftformat") int draftFormat, @RequestParam("leagueformat") int leagueFormat){
 
         //Finding currently logged in user
@@ -46,9 +45,7 @@ public class CreateLeagueController {
         User user = userRepository.findByUsername(name);
 
         //Setting the draft date
-        LocalDateTime date = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
-        league.setDraftDate(date);
-
+        draftdate(year, month, dayOfMonth, hour, minute, league);
 
         //setting owner of the league
         league.setOwnerid(user.getId());
@@ -56,6 +53,16 @@ public class CreateLeagueController {
         //saving league
         leagueRepository.save(league);
         return "landingpage";
+    }
+
+    public void draftdate (String year, String month, String day, String hour, String minute, League league) {
+
+        String dateString = year + "-" +  month + "-" + day + " " + hour + ":" + minute;
+        System.out.println(dateString);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime draftDate = LocalDateTime.parse(dateString, dtf);
+        league.setDraftDate(draftDate);
+        System.out.println(draftDate);
     }
 
 }

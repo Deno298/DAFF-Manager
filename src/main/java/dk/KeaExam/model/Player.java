@@ -12,6 +12,15 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "playerID")
     private Long playerId;
+
+    public Long getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(Long playerId) {
+        this.playerId = playerId;
+    }
+
     @Column(name = "teamID")
     private Long teamId;
     @Column(name = "first_name")

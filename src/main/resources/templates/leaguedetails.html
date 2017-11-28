@@ -18,7 +18,10 @@
     <p id="countdown"></p>
         <input type="hidden" id="draftdate" th:value="${draftstring}"/>
         <input type="text" name="drafttime" th:value="${draftstring}"/>
+        <a th:href="@{/draft.html}">
     <button type = "button" id="myBtn" class="btnDisable" disabled="true" > Please wait...</button>
+        </a>
+    </div>
                 <table class = "table" id="table">
                     <thead>
                     <tr>
@@ -64,7 +67,7 @@
 
                 <span th:text = "${draftOrder[1]}"></span>
     </div>
-</div>
+
 
 
 

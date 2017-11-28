@@ -13,7 +13,7 @@ public class League {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer league_id;
+    private Integer leagueid;
 
     @Column(name = "leagueName")
     @NotNull
@@ -72,21 +72,21 @@ public class League {
     }
 
     @OneToMany
-    @JoinColumn(name = "league_id", referencedColumnName = "league_id")
+    @JoinColumn(name = "leagueid", referencedColumnName = "leagueid")
     private List<Team> teams;
 
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "league_id", referencedColumnName = "league_id")
+    @JoinColumn(name = "leagueid", referencedColumnName = "leagueid")
     private List<MatchSchedule> matches;
 
 
-    public Integer getLeague_id() {
-        return league_id;
+    public Integer getLeagueid() {
+        return leagueid;
     }
 
-    public void setLeague_id(Integer league_id) {
-        this.league_id = league_id;
+    public void setLeagueid(Integer leagueid) {
+        this.leagueid = leagueid;
     }
 
     public String getLeagueName() {

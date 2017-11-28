@@ -53,7 +53,7 @@ public class LeagueDetailsController {
 
         //Finder brugerens hold i ligaen
         for (Team team : user.getTeams()) {
-            if (team.getLeague_id() == league_id) {
+            if (team.getLeagueid() == league_id) {
                 model.addAttribute("userTeam", team);
             }
         }

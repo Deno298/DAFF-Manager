@@ -37,7 +37,7 @@ public class CreateLeagueController {
     @PostMapping("/createleague")
     public String CreateLeague(League league,@RequestParam("year") String year, @RequestParam("month") String month,
                                @RequestParam("dayOfMonth") String dayOfMonth, @RequestParam("hour") String hour, @RequestParam("minute") String minute,
-                               @RequestParam("draftformat") int draftFormat, @RequestParam("leagueformat") int leagueFormat){
+                               @RequestParam("draftFormat") int draftFormat, @RequestParam("leagueFormat") int leagueFormat){
 
         //Finding currently logged in user
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -52,7 +52,7 @@ public class CreateLeagueController {
 
         //saving league
         leagueRepository.save(league);
-        return "landingpage";
+        return "index";
     }
 
     public void draftdate (String year, String month, String day, String hour, String minute, League league) {

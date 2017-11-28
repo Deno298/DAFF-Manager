@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="../static/css/login.css" th:href="@{/css/login.css}"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <title>Login</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+    <div class="container">
+        <a href="index.html" class="navbar-brand">Daff Fantasy</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+<!-- LOGIN -->
+<div class="py-5">
+    <div class="py-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title text-muted"><h4>Account Login</h4></div>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/}" method="post">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" name="username" placeholder="Enter username"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" name="password" placeholder="Password"/>
+                            </div>
+                            <input type="submit" class="btn btn-primary btn-block" value="Login"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<footer id="main-footer" class="bg-dark text-white mt-5 p-5">
+    <div class="conatiner">
+        <div class="row">
+            <div class="col">
+                <p class="lead text-center">Copyright &copy; 2017 Daff Fantasy</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script src="../static/js/jquery.min.js" th:src="@{js/jquery.min.js}"></script>
+<script src="../static/js/bootstrap.min.js" th:src="@{js/bootstrap.min.js}"></script>
+<script src="../static/js/passwordValidation.js" th:src="@{/js/passwordValidation.js}"></script>
+
+</body>
+</html>

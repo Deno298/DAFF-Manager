@@ -16,7 +16,7 @@ public class Team implements Comparable<Team> {
 
     private Integer id;
 
-    private Integer league_id;
+    private Integer leagueid;
 
     private int wins;
 
@@ -52,8 +52,12 @@ public class Team implements Comparable<Team> {
         this.points = points;
     }
 
-    public Integer getLeague_id() {
-        return league_id;
+    public Integer getLeagueid() {
+        return leagueid;
+    }
+
+    public void setLeagueid(Integer leagueid) {
+        this.leagueid = leagueid;
     }
 
     public int getWins() {
@@ -72,9 +76,7 @@ public class Team implements Comparable<Team> {
         this.loses = loses;
     }
 
-    public void setLeague_id(Integer league_id) {
-        this.league_id = league_id;
-    }
+
 
     public Integer getId() {
         return id;

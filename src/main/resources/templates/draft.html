@@ -5,6 +5,9 @@
 
 <head th:replace="layout :: site-head">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/postrequest.js" th:src="@{/js/postrequest.js}"></script>
+
 </head>
 
 <body>
@@ -28,11 +31,14 @@
             <tr th:each="player, status : ${players}">
                 <td th:text="${status.count}">1</td>
                 <td th:text="${player.firstName}">Name</td>
-                <td>
-                <form th:action="@{/draft.html}" method="post">
 
-                    <button type="submit">Se detaljer</button>
-                </form>
+                <td>
+                    <div id="postdiv">
+                    <form id="customerForm">
+                    <input type="hidden" id = "playerId" class="playerId" th:value = "${player.playerId}"/>
+                    <button type="submit" id="postBtn">Snup Spiller</button>
+                    </form>
+                    </div>
                 </td>
             </tr>
             </tbody>
@@ -41,7 +47,7 @@
 </div>
 
 
+<script src="js/postrequest.js" th:src="@{/js/postrequest.js}"></script>
 
-<div th:replace="layout :: site-scripts"></div>
 </body>
 </html>

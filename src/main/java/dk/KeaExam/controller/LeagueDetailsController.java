@@ -8,6 +8,7 @@ import dk.KeaExam.repository.LeagueRepository;
 import dk.KeaExam.repository.MatchScheduleRepository;
 import dk.KeaExam.repository.TeamRepository;
 import dk.KeaExam.repository.UserRepository;
+import dk.KeaExam.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,48 +29,33 @@ import java.util.List;
 public class LeagueDetailsController {
 
     @Autowired
-    private TeamRepository teamRepository;
+    private LeagueService leagueService;
 
     @Autowired
-    private MatchScheduleRepository matchScheduleRepository;
+    private DraftService draftService;
 
     @Autowired
-    private LeagueRepository leagueRepository;
+    private TeamService teamService;
 
     @Autowired
-    private UserRepository userRepository;
+    private MatchScheduleService matchScheduleService;
 
     @GetMapping("/leaguedetails")
-    public ModelAndView LeagueDetails(Model model, @RequestParam("league_id") int league_id) {
+    public ModelAndView LeagueDetails(Model model, @RequestParam("leagueId") int leagueId) {
 
         //Finder ligaen brugeren ønsker at se details for
-        League league = leagueRepository.getOne(league_id);
-        System.out.println(league);
+        League league = leagueService.getOneLeague(leagueId);
 
-        //Finder brugeren
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        User user = userRepository.findByUsername(name);
 
-        //Finder brugerens hold i ligaen
-        for (Team team : user.getTeams()) {
-            if (team.getLeagueid() == league_id) {
-                model.addAttribute("userTeam", team);
-            }
-        }
+        model.addAttribute("userTeam", teamService.findLoggedInUserTeam(leagueId));
 
-        //Get draftdate
-        String strDraftDate = ReverseDraftDate(league);
-        model.addAttribute("draftstring", strDraftDate);
+        model.addAttribute("draftstring", draftService.convertDatetoString(league));
 
         //Get all the teams from the selected league and sorting the list based on points.. see team comparable.
-        List<Team> teams = new ArrayList<>( league.getTeams());
+        List<Team> teams = teamService.getAllTeamsInLeague(league);
         Collections.sort(teams);
 
-
-        List<Team> forsog = league.getTeams();
-
-        listMatches(forsog, league_id);
+        matchScheduleService.generateMatchSchedule(league);
 
 
         //Stillingen
@@ -110,64 +96,5 @@ public class LeagueDetailsController {
         return draftOrder;
     }
 
-
-    public void listMatches(List<Team> listTeam, int league_id){
-
-        List<Team> schedule = new ArrayList<>();
-
-        //In case of odd numbered teams add a "bye" team
-        Team bye = teamRepository.findByTeamName("test");
-
-        if(listTeam.size() % 2 != 0){
-            listTeam.add(bye);
-        }
-
-
-        //instantiating variables
-        int numRounds = listTeam.size() - 1;
-        int halfSize = listTeam.size()/2 ;
-
-        List<Team> teams = new ArrayList<>();
-
-        //add all of listTeam to teams and remove index 0
-        teams.addAll(listTeam);
-        teams.remove(0);
-
-        int existingTeams = teams.size();
-
-        for(int i = 0; i < numRounds; i++){
-            System.out.println("Round: " + i);
-            int teamId = i % existingTeams;
-            saveTeam(teams.get(teamId).getTeamName(), listTeam.get(0).getTeamName(), league_id);
-            for(int j = 1; j < halfSize; j++){
-                int firstTeam = (i + j) % existingTeams;
-                int secondTeam = (i+ existingTeams-j) % existingTeams;
-
-                saveTeam(teams.get(firstTeam).getTeamName(), teams.get(secondTeam).getTeamName(), league_id);
-            }
-        }
-        System.out.println(schedule);
-    }
-
-
-
-    public void saveTeam(String team1, String team2, int league_id){
-        League league = leagueRepository.getOne(league_id);
-        MatchSchedule matchSchedule = new MatchSchedule();
-        matchSchedule.setTeam1(team1);
-        matchSchedule.setTeam2(team2);
-        league.addMatches(matchSchedule);
-        leagueRepository.save(league);
-
-    }
-
-    public String ReverseDraftDate (League league) {
-
-        LocalDateTime localDateTime = league.getDraftDate();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        String reversedDraftDate = localDateTime.format(dtf);
-        System.out.println(reversedDraftDate);
-        return reversedDraftDate;
-    }
 
 }

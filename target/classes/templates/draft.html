@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http//www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-
-<head th:replace="layout :: site-head">
+      xmlns:th="http://www.thymeleaf.org">
+<head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="js/postrequest.js" th:src="@{/js/postrequest.js}"></script>
-
+    <script src="../static/js/postrequest.js" th:src="@{/js/postrequest.js}"></script>
 </head>
 
 <body>
 
-<header th:replace="layout :: site-header"></header>
-
-<main th:replace="layout :: site-sidebar"></main>
-
 <div class="container">
+
+
+
+
+
+
+
+
     <div class="text">
+
+
+<!--
+        <div class="container">
+            <h1>POST-GET AJAX</h1>
+            <div id="postdiv">
+                <form id="customerForm">
+                    <label>FirstName</label>
+                    <input type="text" id="firstname" class="form-control"/>
+                    <label>LastName</label>
+                    <input type="text" id="lastname" class="form-control"/>
+                    <button type="submit" id="postBtn" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div id="postResultDiv">
+            </div>
+        </div> -->
+
+
+
         <input type="text" id="search" placeholder="Type to search"/>
         <table class = "table" id="table">
             <thead>
@@ -34,10 +55,11 @@
 
                 <td>
                     <div id="postdiv">
-                    <form id="customerForm">
-                    <input type="hidden" id = "playerId" class="playerId" th:value = "${player.playerId}"/>
-                    <button type="submit" id="postBtn">Snup Spiller</button>
-                    </form>
+                        <form id="customerForm">
+                            <label>Player</label>
+                            <input type="hidden" id="playerId" th:value="${player.playerId}" class="form-control"/>
+                            <button type="submit" id="postBtn" class="btn btn-primary">Submit</button>
+                        </form>
                     </div>
                 </td>
             </tr>
@@ -47,7 +69,7 @@
 </div>
 
 
-<script src="js/postrequest.js" th:src="@{/js/postrequest.js}"></script>
+<script src="../static/js/postrequest.js" th:src="@{/js/postrequest.js}"></script>
 
 </body>
 </html>

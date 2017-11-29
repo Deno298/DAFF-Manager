@@ -6,15 +6,15 @@ import dk.KeaExam.model.User;
 import dk.KeaExam.repository.LeagueRepository;
 import dk.KeaExam.repository.TeamRepository;
 import dk.KeaExam.repository.UserRepository;
+import dk.KeaExam.service.LeagueService;
+import dk.KeaExam.service.TeamService;
+import dk.KeaExam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Iterator;
@@ -24,68 +24,37 @@ import java.util.List;
 public class LeagueController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    private LeagueRepository leagueRepository;
+    private LeagueService leagueService;
 
     @Autowired
-    private TeamRepository teamRepository;
+    private TeamService teamService;
 
-    @RequestMapping("/leagueoverview")
-    public ModelAndView showAllLeagues() {
-        //Finds the logged in user
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        User user = userRepository.findByUsername(name);
-
-        //Get all leagues
-        List<League> leagues = leagueRepository.findAll();
-
-        //Iterate through them, if the user exist remove the league from the list
-        for (Iterator<League> it = leagues.iterator(); it.hasNext();){
-            League league = it.next();
-            if(league.containsUser(user)){
-                it.remove();
-            }
-        }
-
-        System.out.println(leagues);
-
-        return new ModelAndView("leagueoverview", "leagueoverview", leagues);
+    @GetMapping("/leagueoverview")
+    public ModelAndView showAllAvailableLeagues() {
+        return new ModelAndView("leagueoverview", "leagueoverview", leagueService.findAllAvailableLeagues() );
     }
 
-    @PostMapping("/leagueoverview")
-    public ModelAndView signUpForLeague(@ModelAttribute User user, BindingResult bindingResult, @RequestParam("paramName") Integer league_id, @RequestParam("password") String password, @RequestParam("teamName") String teamName) {
 
-        //Finding currently loggedin user name
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
+    @PostMapping("/leagueoverview")
+    public ModelAndView signUpForLeague(@ModelAttribute User user, BindingResult bindingResult,
+                                        @RequestParam("leagueId") Integer leagueId, @RequestParam("password") String password, @RequestParam("teamName") String teamName) {
 
         //finding the league the user pressed on
-        League league = leagueRepository.getOne(league_id);
+        League league = leagueService.getOneLeague(leagueId);
 
         //checks if the users requested teamname already exists in the database
-        Team teamExist = teamRepository.findByTeamName(teamName);
+        Team teamExist = teamService.findByTeamName(teamName);
+
+
         if(league.getPassword().equals(password) && teamExist == null){
-            //retrieve the user from the database so we can add him to the league
-            User userExists = (userRepository.findByUsername(name));
-            userExists.addLeague(league);
-
-            //creates and adds team
-            Team team = new Team();
-            team.setTeamName(teamName);
-            league.addTeams(team);
-            userExists.addTeams(team);
-
-            //saving
-            teamRepository.save(team);
-            userRepository.save(userExists);
+            userService.addUserToLeague(league, teamName, user);
             return new ModelAndView("landingpage", "landingpage", user);
-        }
-        else {
+        } else {
             bindingResult.rejectValue("password", "Error.password", "der er fejl i dit kodeord");
-            return new ModelAndView("leagueoverview", "leagueoverview", leagueRepository.findAll());
+            return new ModelAndView("leagueoverview", "leagueoverview", leagueService.findAllAvailableLeagues() );
         }
     }
 }

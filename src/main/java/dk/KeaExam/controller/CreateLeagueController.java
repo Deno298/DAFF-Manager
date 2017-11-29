@@ -4,6 +4,9 @@ import dk.KeaExam.model.League;
 import dk.KeaExam.model.User;
 import dk.KeaExam.repository.LeagueRepository;
 import dk.KeaExam.repository.UserRepository;
+import dk.KeaExam.service.LeagueService;
+import dk.KeaExam.service.UserService;
+import dk.KeaExam.service.UserServiceImpl;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -23,10 +26,11 @@ import java.time.format.DateTimeFormatter;
 public class CreateLeagueController {
 
     @Autowired
-    private LeagueRepository leagueRepository;
+    private UserService userService;
 
     @Autowired
-    private UserRepository userRepository;
+    private LeagueService leagueService;
+
 
     @GetMapping("/createleague")
     public String CreateLeague(Model model) {
@@ -40,9 +44,7 @@ public class CreateLeagueController {
                                @RequestParam("draftFormat") int draftFormat, @RequestParam("leagueFormat") int leagueFormat){
 
         //Finding currently logged in user
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        User user = userRepository.findByUsername(name);
+        User user = userService.getCurrentUser();
 
         //Setting the draft date
         draftdate(year, month, dayOfMonth, hour, minute, league);
@@ -51,7 +53,7 @@ public class CreateLeagueController {
         league.setOwnerid(user.getId());
 
         //saving league
-        leagueRepository.save(league);
+        leagueService.saveLeague(league);
         return "index";
     }
 

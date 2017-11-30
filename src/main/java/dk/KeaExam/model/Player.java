@@ -13,14 +13,6 @@ public class Player {
     @Column(name = "playerID")
     private Long playerId;
 
-    public Long getPlayerId() {
-        return playerId;
-    }
-
-    public void setPlayerId(Long playerId) {
-        this.playerId = playerId;
-    }
-
     @Column(name = "teamID")
     private Long teamId;
     @Column(name = "first_name")
@@ -191,5 +183,13 @@ public class Player {
 
     public void setZoneCoverage(Integer zoneCoverage) {
         this.zoneCoverage = zoneCoverage;
+    }
+
+    public Long getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(Long playerId) {
+        this.playerId = playerId;
     }
 }

@@ -38,8 +38,8 @@ public class DraftController {
     public ModelAndView draftPhase(Model model){
         League league  = leagueRepository.getOne(1);
         model.addAttribute("league" , league);
-        model.addAttribute("players" , playerRepository.findAll());
-        return new ModelAndView("draft", "draft",model);
+        model.addAttribute("allPlayers" , playerRepository.findAll());
+        return new ModelAndView("finalDraft", "finalDraft",model);
     }
 
 

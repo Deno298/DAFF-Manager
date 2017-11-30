@@ -57,43 +57,16 @@ public class LeagueDetailsController {
 
         matchScheduleService.generateMatchSchedule(league);
 
-
         //Stillingen
         model.addAttribute("leagueTeams", teams);
 
         //Generating draft-order
-        List<User> draftOrder = createDraftOrder(new ArrayList<>(league.getUsers()), "sne");
+        List<User> draftOrder = leagueService.generateDraftOrder(new ArrayList<>(league.getUsers()), "sne");
 
         model.addAttribute("draftOrder", draftOrder);
 
         //return det hele til draft siden
         return new ModelAndView("leagueDetails", "leagueDetails", model);
-    }
-
-
-
-    public List<User> createDraftOrder(ArrayList<User> usersInLeague, String draftType) {
-
-        int repeater = 3;
-        //list we wants to return
-        List<User> draftOrder = new ArrayList<>();
-
-        //Randomizes order of users, users comparable method returns a random value
-        Collections.sort(usersInLeague);
-
-        //adds user to final list
-        draftOrder.addAll(usersInLeague);
-
-        if(draftType.equals("snake")) {
-            Collections.reverse(usersInLeague);
-            draftOrder.addAll(usersInLeague);
-            repeater = 2;
-        }
-        for (int i = 0; i < repeater; i++) {
-            draftOrder.addAll(draftOrder);
-        }
-
-        return draftOrder;
     }
 
 

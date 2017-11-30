@@ -28,6 +28,11 @@ public class Team implements Comparable<Team> {
 
     private int points;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "Teams", joinColumns = @JoinColumn(name="team_name"), inverseJoinColumns = @JoinColumn(name = "player_id"))
+    private List<Player> players = new ArrayList<>();
+
+
     public int getDraws() {
         return draws;
     }
@@ -76,8 +81,6 @@ public class Team implements Comparable<Team> {
         this.loses = loses;
     }
 
-
-
     public Integer getId() {
         return id;
     }
@@ -85,10 +88,6 @@ public class Team implements Comparable<Team> {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "Teams", joinColumns = @JoinColumn(name="team_name"), inverseJoinColumns = @JoinColumn(name = "player_id"))
-    private List<Player> players = new ArrayList<>();
 
     public String getTeamName() {
         return teamName;
@@ -105,6 +104,7 @@ public class Team implements Comparable<Team> {
     public void addPlayer(Player players) {
         this.players.add(players);
     }
+
 
     @Override
     public int compareTo(Team team){

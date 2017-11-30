@@ -13,7 +13,7 @@
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
     <div class="container">
-        <a href="index.html" class="navbar-brand">Blogen</a>
+        <a href="index.html" class="navbar-brand">Daff fantasy</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -97,72 +97,28 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Latest Posts</h4>
+                        <h4>Dine ligaer</h4>
                     </div>
                     <table class="table table-striped">
                         <thead class="thead-inverse">
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
-                            <th>Category</th>
-                            <th>Date Posted</th>
+                            <th>Liga navn</th>
+                            <th>Draft date</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>Post One</td>
-                            <td>Web Development</td>
-                            <td>July 12, 2017</td>
-                            <td><a href="details.html" class="btn btn-secondary">
-                                <i class="fa fa-angle-double-right"></i> Details
-                            </a></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">2</td>
-                            <td>Post Two</td>
-                            <td>Tech Gadgets</td>
-                            <td>July 13, 2017</td>
-                            <td><a href="details.html" class="btn btn-secondary">
-                                <i class="fa fa-angle-double-right"></i> Details
-                            </a></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">3</td>
-                            <td>Post Three</td>
-                            <td>Web Development</td>
-                            <td>July 14, 2017</td>
-                            <td><a href="details.html" class="btn btn-secondary">
-                                <i class="fa fa-angle-double-right"></i> Details
-                            </a></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">4</td>
-                            <td>Post Four</td>
-                            <td>Business</td>
-                            <td>July 14, 2017</td>
-                            <td><a href="details.html" class="btn btn-secondary">
-                                <i class="fa fa-angle-double-right"></i> Details
-                            </a></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">5</td>
-                            <td>Post Five</td>
-                            <td>Web Development</td>
-                            <td>July 15 2017</td>
-                            <td><a href="details.html" class="btn btn-secondary">
-                                <i class="fa fa-angle-double-right"></i> Details
-                            </a></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">6</td>
-                            <td>Post Six</td>
-                            <td>Health  Wellness</td>
-                            <td>July 16, 2017</td>
-                            <td><a href="details.html" class="btn btn-secondary">
-                                <i class="fa fa-angle-double-right"></i> Details
-                            </a></td>
+                        <tr th:each="league, status : ${userLeagues}">
+                            <td th:text="${status.count}">1</td>
+                            <td th:text="${league.leagueName}">Name</td>
+                            <td th:text="${league.draftDate}">DraftDate</td>
+                            <td>
+                            <form th:action="@{/leaguedetails.html}" method="get">
+                            <input type="hidden" name="leagueId" th:value="${league.leagueid}"/>
+                            <button type="submit">Se detaljer</button>
+                             </form>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

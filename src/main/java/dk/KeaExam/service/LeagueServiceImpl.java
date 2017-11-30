@@ -6,6 +6,8 @@ import dk.KeaExam.repository.LeagueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -48,4 +50,30 @@ public class LeagueServiceImpl implements LeagueService {
         }
         return leagues;
     }
+
+    @Override
+    public List<User> generateDraftOrder(ArrayList<User> usersInLeague, String draftType) {
+        int repeater = 3;
+        //list we wants to return
+        List<User> draftOrder = new ArrayList<>();
+
+        //Randomizes order of users, users comparable method returns a random value
+        Collections.sort(usersInLeague);
+
+        //adds user to final list
+        draftOrder.addAll(usersInLeague);
+
+        if(draftType.equals("snake")) {
+            Collections.reverse(usersInLeague);
+            draftOrder.addAll(usersInLeague);
+            repeater = 2;
+        }
+        for (int i = 0; i < repeater; i++) {
+            draftOrder.addAll(draftOrder);
+        }
+
+        return draftOrder;
+    }
+
 }
+

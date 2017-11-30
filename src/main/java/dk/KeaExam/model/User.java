@@ -43,15 +43,6 @@ public class User implements Comparable<User>{
         this.teams.add(teams);
     }
 
-    public User() {
-    }
-
-    public User(String username, String password, String email) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
-
     public String getEmail() {
         return email;
     }

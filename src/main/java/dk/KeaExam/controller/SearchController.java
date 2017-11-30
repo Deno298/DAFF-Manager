@@ -28,7 +28,7 @@ public class SearchController {
     }
 
     @PostMapping("/api/search")
-    public ResponseEntity<?> getSearchResultViaAjax(@Vajaalid @RequestBody SearchCriteria search, Errors errors) {
+    public ResponseEntity<?> getSearchResultViaAjax(@Valid @RequestBody SearchCriteria search, Errors errors) {
         System.out.println("hej");
         AjaxResponseBody result = new AjaxResponseBody();
 

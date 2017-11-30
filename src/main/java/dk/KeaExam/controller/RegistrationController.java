@@ -3,6 +3,7 @@ package dk.KeaExam.controller;
 import dk.KeaExam.service.CustomUserDetailService;
 import dk.KeaExam.model.User;
 import dk.KeaExam.repository.UserRepository;
+import dk.KeaExam.service.UserService;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,6 +27,10 @@ public class RegistrationController {
     @Autowired
     private CustomUserDetailService customUserDetailService;
 
+    @Autowired
+    private UserService userService;
+
+
         @GetMapping("/signup")
         public String signUp(Model model) {
             model.addAttribute("user", new User());
@@ -34,7 +39,7 @@ public class RegistrationController {
 
         @PostMapping("/signup")
         public String signUp(@ModelAttribute User user, BindingResult bindingResult) {
-            User userExists = (userRepository.findByUsername(user.getUsername()));
+            User userExists = userService.findByUsername(user.getUsername());
             if(userExists != null){
                 bindingResult.rejectValue("username", "error.user", "There is already a user with that username");
             }
@@ -42,7 +47,6 @@ public class RegistrationController {
                 return"home";
             }
             customUserDetailService.registerUser(user);
-
             return "home";
         }
 

@@ -21,7 +21,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Controller
-public class LeagueController {
+public class LeagueOverviewController {
 
     @Autowired
     private UserService userService;
@@ -51,7 +51,7 @@ public class LeagueController {
 
         if(league.getPassword().equals(password) && teamExist == null){
             userService.addUserToLeague(league, teamName, user);
-            return new ModelAndView("landingpage", "landingpage", user);
+            return new ModelAndView("index", "index ", user);
         } else {
             bindingResult.rejectValue("password", "Error.password", "der er fejl i dit kodeord");
             return new ModelAndView("leagueoverview", "leagueoverview", leagueService.findAllAvailableLeagues() );

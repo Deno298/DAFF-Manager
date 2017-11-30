@@ -19,14 +19,6 @@ public class League {
     @NotNull
     private String leagueName;
 
-    public List<MatchSchedule> getMatches() {
-        return matches;
-    }
-
-    public void addMatches(MatchSchedule matches) {
-        this.matches.add(matches);
-    }
-
     @NotNull
     private String password;
 
@@ -39,38 +31,6 @@ public class League {
     @Column
     private LocalDateTime draftDate;
 
-    public LocalDateTime getDraftDate() {
-        return draftDate;
-    }
-
-    public void setDraftDate(LocalDateTime draftDate) {
-        this.draftDate = draftDate;
-    }
-
-    public int getOwnerid() {
-        return ownerid;
-    }
-
-    public void setOwnerid(int ownerid) {
-        this.ownerid = ownerid;
-    }
-
-    public League() {
-    }
-
-    public League(String leagueName, String password) {
-        this.leagueName = leagueName;
-        this.password = password;
-    }
-
-    public List<Team> getTeams() {
-        return teams;
-    }
-
-    public void addTeams(Team team) {
-        this.teams.add(team);
-    }
-
     @OneToMany
     @JoinColumn(name = "leagueid", referencedColumnName = "leagueid")
     private List<Team> teams;
@@ -79,6 +39,15 @@ public class League {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "leagueid", referencedColumnName = "leagueid")
     private List<MatchSchedule> matches;
+
+
+    public League() {
+    }
+
+    public League(String leagueName, String password) {
+        this.leagueName = leagueName;
+        this.password = password;
+    }
 
 
     public Integer getLeagueid() {
@@ -111,6 +80,38 @@ public class League {
 
     public void addUsers(User user) {
         this.users.add(user);
+    }
+
+    public List<MatchSchedule> getMatches() {
+        return matches;
+    }
+
+    public void addMatches(MatchSchedule matches) {
+        this.matches.add(matches);
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void addTeams(Team team) {
+        this.teams.add(team);
+    }
+
+    public LocalDateTime getDraftDate() {
+        return draftDate;
+    }
+
+    public void setDraftDate(LocalDateTime draftDate) {
+        this.draftDate = draftDate;
+    }
+
+    public int getOwnerid() {
+        return ownerid;
+    }
+
+    public void setOwnerid(int ownerid) {
+        this.ownerid = ownerid;
     }
 
 

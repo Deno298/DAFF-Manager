@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    @RequestMapping("/home")
+    @RequestMapping("/")
     public String index(Model model) {
         model.addAttribute("user", new User());
         return "home";

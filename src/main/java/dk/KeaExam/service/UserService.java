@@ -13,6 +13,8 @@ public interface UserService {
 
     User addUserToLeague(League league, String teamName, User user);
 
+    User findByUsername(String username);
+
 
 
 

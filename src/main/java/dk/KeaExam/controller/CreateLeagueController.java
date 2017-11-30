@@ -41,7 +41,7 @@ public class CreateLeagueController {
     @PostMapping("/createleague")
     public String CreateLeague(League league,@RequestParam("year") String year, @RequestParam("month") String month,
                                @RequestParam("dayOfMonth") String dayOfMonth, @RequestParam("hour") String hour, @RequestParam("minute") String minute,
-                               @RequestParam("draftFormat") int draftFormat, @RequestParam("leagueFormat") int leagueFormat){
+                               @RequestParam("draftFormat") int draftFormat, @RequestParam("leagueFormat") int leagueFormat, Model model){
 
         //Finding currently logged in user
         User user = userService.getCurrentUser();
@@ -54,6 +54,8 @@ public class CreateLeagueController {
 
         //saving league
         leagueService.saveLeague(league);
+        model.addAttribute("userLeagues", user.getLeagues());
+        model.addAttribute("league", new League());
         return "index";
     }
 

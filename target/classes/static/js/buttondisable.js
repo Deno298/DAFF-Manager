@@ -29,7 +29,7 @@ $( document ).ready(function() {
         if (distance < 0) {
             $("#myBtn").removeAttr("disabled");
             $("#myBtn").removeClass().addClass("btnEnable");
-            $("#countdown").fadeTo(2500, 0);
+            $("#countdown").fadeTo(0, 0);
             myBtn.innerHTML = "Click Me!";
             clearInterval(x);
         }

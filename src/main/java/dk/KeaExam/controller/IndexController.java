@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.xml.ws.soap.Addressing;
 
 @Controller
 public class IndexController {
@@ -18,8 +17,8 @@ public class IndexController {
 
     @RequestMapping("/index")
     public String index(Model model) {
-        model.addAttribute("league", new League());
         User user = userService.getCurrentUser();
+        model.addAttribute("league", new League());
         model.addAttribute("userLeagues", user.getLeagues());
         return "index";
     }

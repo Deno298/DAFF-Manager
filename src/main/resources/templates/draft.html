@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="../static/js/postrequest.js" th:src="@{/js/postrequest.js}"></script>
+    <script src="../static/js/freestylejs.js" th:src = "@{/js/freestylejs.js}"></script>
+
 </head>
 
 <body>
@@ -21,30 +23,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="player, status : ${players}">
+            <tr th:each="player, status : ${allPlayers}">
                 <td th:text="${status.count}">1</td>
                 <td th:text="${player.firstName}">Name</td>
-
-                <td>
-                    <div id="feedback"></div>
-
-                    <form class="form-horizontal" id="search-form">
-                        <div class="form-group form-group-lg">
-                            <label class="col-sm-2 control-label">Username</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="username"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" id="bth-search"
-                                        class="btn btn-primary btn-lg">Search
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </td>
+                <td th:text="${player.lastName}"> </td>
+                <td><button id="getPlayer" class="btn btn-secondary">Hello</button></td>
             </tr>
             </tbody>
         </table>
@@ -54,5 +37,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="../static/js/hey.js" th:src="@{/js/hey.js}"></script>
+<script src="../static/js/freestylejs.js" th:src = "@{/js/freestylejs.js}"></script>
 </body>
 </html>

@@ -29,17 +29,13 @@ public class DraftController {
     TeamRepository teamRepository;
 
     @Autowired
-    PlayerRepository playerRepository;
-
-    @Autowired
     LeagueRepository leagueRepository;
 
     @GetMapping("/draft")
     public ModelAndView draftPhase(Model model){
         League league  = leagueRepository.getOne(1);
         model.addAttribute("league" , league);
-        model.addAttribute("allPlayers" , playerRepository.findAll());
-        return new ModelAndView("draft", "draft",model);
+        return new ModelAndView("yay", "draft",model);
     }
 
 

@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#search-form").submit(function (event) {
+    $("#search-form").click(function (event) {
         //stop submit the form, we will post it manually.
         event.preventDefault();
 
@@ -14,7 +14,9 @@ function fire_ajax_submit() {
 
     var search = {}
     search["username"] = $("#username").val();
+    search["leagueId"] = $("#leagueid").val();
     //search["email"] = $("#email").val();
+
 
     $("#btn-search").prop("disabled", true);
 

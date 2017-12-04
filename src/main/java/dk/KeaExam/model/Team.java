@@ -26,20 +26,28 @@ public class Team implements Comparable<Team> {
 
     private int points;
 
+    @Column(name = "player_one")
     private String player1;
 
+    @Column(name = "player_two")
     private String player2;
 
+    @Column(name = "player_three")
     private String player3;
 
+    @Column(name = "player_four")
     private String player4;
 
+    @Column(name = "player_five")
     private String player5;
 
+    @Column(name = "player_six")
     private String player6;
 
+    @Column(name = "player_seven")
     private String player7;
 
+    @Column(name = "player_eight")
     private String player8;
 
     public String getPlayer1() {

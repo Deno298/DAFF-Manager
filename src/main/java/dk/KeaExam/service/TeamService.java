@@ -1,6 +1,7 @@
 package dk.KeaExam.service;
 
 import dk.KeaExam.model.League;
+import dk.KeaExam.model.Player;
 import dk.KeaExam.model.Team;
 
 import java.util.List;
@@ -14,5 +15,5 @@ public interface TeamService {
 
     List<Team> getAllTeamsInLeague(League league);
 
-    void addPlayer(Team team);
+    public void addPlayer(int leagueid, String addPlayer);
 }

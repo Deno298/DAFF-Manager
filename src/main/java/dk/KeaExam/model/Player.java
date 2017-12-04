@@ -16,17 +16,6 @@ public class Player {
 
     private String lastName;
 
-    @ManyToMany(mappedBy = "players")
-    private List<Team> teams = new ArrayList<>();
-
-    public List<Team> getTeams() {
-        return teams;
-    }
-
-    public void addTeams(Team team) {
-        this.teams.add(team);
-    }
-
     public String getFirstName() {
         return firstName;
     }

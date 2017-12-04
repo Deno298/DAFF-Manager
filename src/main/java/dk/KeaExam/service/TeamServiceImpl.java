@@ -1,6 +1,7 @@
 package dk.KeaExam.service;
 
 import dk.KeaExam.model.League;
+import dk.KeaExam.model.Player;
 import dk.KeaExam.model.Team;
 import dk.KeaExam.model.User;
 import dk.KeaExam.repository.TeamRepository;
@@ -48,14 +49,16 @@ public class TeamServiceImpl implements TeamService{
     }
 
     @Override
-    public void addPlayer(League league) {
-        findLoggedInUserTeam()
+    public void addPlayer(int leagueid, String addPlayer) {
+        Team team = findLoggedInUserTeam(1);
         for (String player: team.getPlayers()){
             if(player.equals(null)){
-
+                player = addPlayer;
+                break;
             }
-
         }
+        saveTeam(team);
+
     }
 }
 

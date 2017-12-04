@@ -33,7 +33,7 @@ public class SearchController {
 
 
     @PostMapping("/api/search")
-    public List<Player> getSearchResultViaAjax(@Valid @RequestBody SearchCriteria search, Errors errors) {
+    public void getSearchResultViaAjax(@Valid @RequestBody SearchCriteria search, Errors errors) {
         System.out.println("hej");
         AjaxResponseBody result = new AjaxResponseBody();
         System.out.println(search.getUsername());
@@ -41,10 +41,8 @@ public class SearchController {
 
         Team team = teamService.findLoggedInUserTeam(search.getLeagueId());
         System.out.println(team);
-        team.addPlayer(playerRepository.getOne(search.getUsername()));
-        teamService.saveTeam(team);
-        //If error, just return a 400 bad request, along with the error message
-        return playerRepository.findAll();
+        Player player = playerRepository.getOne(search.getUsername());
+        teamService.addPlayer(1, player.getFirstName());
     }
 
 }

@@ -76,7 +76,7 @@ public class LeagueServiceImpl implements LeagueService {
 
         return draftOrder;
     }
-
+/*
     @Override
     public List<Player> playersInLeague(League league) {
 
@@ -87,5 +87,6 @@ public class LeagueServiceImpl implements LeagueService {
 
         return playersInLeague;
     }
+    */
 }
 

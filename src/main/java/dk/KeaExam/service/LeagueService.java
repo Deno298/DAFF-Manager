@@ -18,6 +18,6 @@ public interface LeagueService {
 
     List<User> generateDraftOrder(ArrayList<User> usersInLeague, String draftType);
 
-    List<Player> playersInLeague(League league);
+    /* List<Player> playersInLeague(League league); */
 
 }

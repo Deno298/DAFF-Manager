@@ -1,8 +1,5 @@
 package dk.KeaExam.model;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,18 +10,11 @@ public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
-    @JsonView(DataTablesOutput.View.class)
     private Integer playerId;
 
-    private Long teamId;
-
-    @JsonView(DataTablesOutput.View.class)
     private String firstName;
 
-    @JsonView(DataTablesOutput.View.class)
     private String lastName;
-
 
     @ManyToMany(mappedBy = "players")
     private List<Team> teams = new ArrayList<>();
@@ -35,14 +25,6 @@ public class Player {
 
     public void addTeams(Team team) {
         this.teams.add(team);
-    }
-
-    public Long getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(Long teamId) {
-        this.teamId = teamId;
     }
 
     public String getFirstName() {
@@ -61,11 +43,13 @@ public class Player {
         this.lastName = lastName;
     }
 
+    public Integer getPlayerId() {
+        return playerId;
+    }
+
     public void setPlayerId(Integer playerId) {
         this.playerId = playerId;
     }
-
-
 
     @Override
     public String toString() {

@@ -1,6 +1,8 @@
 package dk.KeaExam.service;
 
 import dk.KeaExam.model.League;
+import dk.KeaExam.model.Player;
+import dk.KeaExam.model.Team;
 import dk.KeaExam.model.User;
 import dk.KeaExam.repository.LeagueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,5 +77,15 @@ public class LeagueServiceImpl implements LeagueService {
         return draftOrder;
     }
 
+    @Override
+    public List<Player> playersInLeague(League league) {
+
+        List<Player> playersInLeague = new ArrayList<>();
+        for (Team team: league.getTeams()){
+            playersInLeague.addAll(team.getPlayers());
+        }
+
+        return playersInLeague;
+    }
 }
 

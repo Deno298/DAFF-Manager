@@ -7,6 +7,7 @@ import dk.KeaExam.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -44,6 +45,17 @@ public class TeamServiceImpl implements TeamService{
     @Override
     public List<Team> getAllTeamsInLeague(League league) {
         return league.getTeams();
+    }
+
+    @Override
+    public void addPlayer(League league) {
+        findLoggedInUserTeam()
+        for (String player: team.getPlayers()){
+            if(player.equals(null)){
+
+            }
+
+        }
     }
 }
 

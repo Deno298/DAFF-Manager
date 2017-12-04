@@ -1,9 +1,8 @@
 package dk.KeaExam.controller;
 
 
-import dk.KeaExam.model.AjaxResponseBody;
-import dk.KeaExam.model.SearchCriteria;
-import dk.KeaExam.model.User;
+import dk.KeaExam.model.*;
+import dk.KeaExam.repository.PlayerRepository;
 import dk.KeaExam.service.TeamService;
 import dk.KeaExam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,39 +23,28 @@ public class SearchController {
     @Autowired
     private UserService userService;
 
-
-
     @Autowired
     private TeamService teamService;
+
+    @Autowired
+    private PlayerRepository playerRepository;
+
 
 
 
     @PostMapping("/api/search")
-    public ResponseEntity<?> getSearchResultViaAjax(@Valid @RequestBody SearchCriteria search, Errors errors) {
+    public List<Player> getSearchResultViaAjax(@Valid @RequestBody SearchCriteria search, Errors errors) {
         System.out.println("hej");
         AjaxResponseBody result = new AjaxResponseBody();
         System.out.println(search.getUsername());
-
         System.out.println(search.getLeagueId());
 
+        Team team = teamService.findLoggedInUserTeam(search.getLeagueId());
+        System.out.println(team);
+        team.addPlayer(playerRepository.getOne(search.getUsername()));
+        teamService.saveTeam(team);
         //If error, just return a 400 bad request, along with the error message
-        if (errors.hasErrors()) {
-
-            result.setMsg(errors.getAllErrors().stream().map(x -> x.getDefaultMessage()).collect(Collectors.joining(",")));
-            return ResponseEntity.badRequest().body(result);
-
-        }
-
-        List<User> users = new ArrayList<>();
-        if (users.isEmpty()) {
-            result.setMsg("no user found!");
-        } else {
-            result.setMsg("success");
-        }
-        result.setResult(users);
-
-        return ResponseEntity.ok(result);
-
+        return playerRepository.findAll();
     }
 
 }

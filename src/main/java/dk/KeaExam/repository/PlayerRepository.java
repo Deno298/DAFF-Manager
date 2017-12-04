@@ -1,7 +1,7 @@
 package dk.KeaExam.repository;
 
 import dk.KeaExam.model.Player;
-import org.springframework.data.jpa.datatables.repository.DataTablesRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PlayerRepository extends DataTablesRepository<Player, Integer> {
+public interface PlayerRepository extends JpaRepository<Player, Integer>{
 }

@@ -1,10 +1,9 @@
 package dk.KeaExam.model;
 
-import org.hibernate.validator.constraints.NotBlank;
 
 public class SearchCriteria {
 
-    Long username;
+    Integer username;
 
     Integer leagueId;
 
@@ -16,11 +15,11 @@ public class SearchCriteria {
         this.leagueId = leagueId;
     }
 
-    public Long getUsername() {
+    public Integer getUsername() {
         return username;
     }
 
-    public void setUsername(Long username) {
+    public void setUsername(Integer username) {
         this.username = username;
     }
 }

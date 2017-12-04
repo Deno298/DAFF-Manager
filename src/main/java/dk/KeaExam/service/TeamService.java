@@ -13,4 +13,6 @@ public interface TeamService {
     Team findLoggedInUserTeam(Integer leagueId);
 
     List<Team> getAllTeamsInLeague(League league);
+
+    void addPlayer(Team team);
 }

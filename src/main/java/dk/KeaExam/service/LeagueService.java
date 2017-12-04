@@ -1,6 +1,7 @@
 package dk.KeaExam.service;
 
 import dk.KeaExam.model.League;
+import dk.KeaExam.model.Player;
 import dk.KeaExam.model.User;
 
 import java.util.ArrayList;
@@ -16,5 +17,7 @@ public interface LeagueService {
     List<League> findAllAvailableLeagues();
 
     List<User> generateDraftOrder(ArrayList<User> usersInLeague, String draftType);
+
+    List<Player> playersInLeague(League league);
 
 }

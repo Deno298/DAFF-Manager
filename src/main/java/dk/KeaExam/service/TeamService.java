@@ -15,5 +15,11 @@ public interface TeamService {
 
     List<Team> getAllTeamsInLeague(League league);
 
-    public void addPlayer(int leagueid, String addPlayer);
+    void addPlayer(int leagueid, String addPlayer, int round);
+
+    List<Player> getListOfPlayers(Team team);
+
+    void addTeamToLeague(String teamName, League league);
+
+
 }

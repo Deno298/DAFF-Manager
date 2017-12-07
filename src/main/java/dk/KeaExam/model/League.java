@@ -31,7 +31,7 @@ public class League {
     @Column
     private LocalDateTime draftDate;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "leagueid", referencedColumnName = "leagueid")
     private List<Team> teams;
 

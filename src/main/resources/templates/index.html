@@ -67,6 +67,8 @@
     </div>
 </header>
 
+<input type ="hidden" id="id" value="" th:attr="value=${error}"/>
+<input type="hidden" id="errormsg" value="" th:attr="value=${errormsg}"/>
 <!-- ACTIONS -->
 <section id="action" class="py-4 mb-4 bg-light">
     <div class="container">
@@ -179,8 +181,10 @@
                 <button class="close" data-dismiss="modal"><span>&times;</span></button>
             </div>
             <div class="modal-body">
+                <div class="alert-danger" id="errormessage"></div>
                 <form th:action="@{/createleague.html}" th:object="${league}" method="post">
-
+                    <label th:if="${#fields.hasErrors('draftDate')}" th:errors="*{draftDate}"    class="validation-message alert-danger">
+                    </label>
                     <div class="form-group">
                         <label>Liga navn</label>
                         <input type="text" class="form-control" th:field="*{leagueName}" placeholder="Enter Username" required="Required"/>
@@ -191,6 +195,11 @@
                         <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password" required="Required"/>
                     </div>
 
+                    <div class="form-group">
+                        <label>Dit teams navn</label>
+                        <input type="text" class="form-control" name="wishedTeamName" placeholder="Team navn" required="Required"/>
+                    </div>
+
                     <div class="row">
                         <div class="px-lg-3">
                         <label>Start tidspunkt for draft:</label>
@@ -199,32 +208,39 @@
                     <div class="row">
                         <div class="form-group col-lg-2">
 
-                            <input type="text" class="form-control" name="year" placeholder="År" required="Required"/>
+                            <input type="text" class="form-control" name="year" placeholder="År" required="Required"
+                                   minlength="4" maxlength="4" pattern="\d{4}"
+                                   oninvalid="setCustomValidity('Skriv årstal med 4 tal fx. 2017')"
+                                   onchange="try{setCustomValidity('')}catch(e){}" />
                         </div>
 
                         <div class="form-group col-lg-2">
-                            <input type="text" class="form-control" name="month" placeholder="Måned" required="Required"/>
+                            <input type="text" class="form-control" name="month" placeholder="Måned" required="Required"
+                            minlength="2" maxlength="2" pattern="\d{2}"
+                            oninvalid="setCustomValidity('Skriv måneden med 2 tal fx 01 ')"
+                            onchange="try{setCustomValidity('')}catch(e){}" />
                         </div>
 
                         <div class="form-group col-lg-2">
-                            <input type="text" class="form-control" name="dayOfMonth" placeholder="Dag" required="Required"/>
+                            <input type="text" class="form-control" name="dayOfMonth" placeholder="Dag" required="Required"
+                            minlength="2" maxlength="2" pattern="\d{2}"
+                            oninvalid="setCustomValidity('Skriv dag med 2 tal fx. 17')"
+                            onchange="try{setCustomValidity('')}catch(e){}" />
                         </div>
 
 
                         <div class="form-group col-lg-2">
-                            <input type="text" class="form-control" name="hour" placeholder="Timer" required="Required"/>
+                            <input type="text" class="form-control" name="hour" placeholder="Timer" required="Required"
+                                   minlength="2" maxlength="2" pattern="\d{2}"
+                                   oninvalid="setCustomValidity('Skriv timer med 2 tal 20')"
+                                   onchange="try{setCustomValidity('')}catch(e){}" />
                         </div>
 
                         <div class="form-group col-lg-2">
-                            <input type="text" class="form-control" name="minute" placeholder="Minutter" required="Required"/>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="hidden" class="form-control" name="draftFormat" value="1" required="Required"/>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="hidden" class="form-control" name="leagueFormat" value="1" required="Required"/>
+                            <input type="text" class="form-control" name="minute" placeholder="Minutter" required="Required"
+                                   minlength="2" maxlength="2" pattern="\d{2}"
+                                   oninvalid="setCustomValidity('Skriv minutter med 2 tal fx. 20')"
+                                   onchange="try{setCustomValidity('')}catch(e){}" />
                         </div>
 
                         <button type="submit" value="login" class="btn btn-default">Opret Liga</button>
@@ -296,6 +312,9 @@
         </div>
     </div>
 </div>
+
+
+<script src="../static/js/errormessagemodal.js" th:src="@{/js/errormessagemodal.js}"></script>
 
 </body>
 </html>

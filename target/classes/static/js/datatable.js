@@ -16,18 +16,18 @@ $(document).ready( function () {
         var lastname = 1;
         //stop submit the form, we will post it manually.
         event.preventDefault();
-        fire_ajax_submit(playerid, lastname);
+        fire_ajax_submit(playerid);
     });
 
     setInterval( function () {
         table.ajax.reload();
     }, 3000 );
 
-    function fire_ajax_submit(param1, param2) {
+    function fire_ajax_submit(param1) {
 
         var search = {}
         search["username"] = param1;
-        search["leagueId"] = param2;
+        search["leagueId"] = $("#leagueid").val();;
 
         $("#btn-search").prop("disabled", true);
 

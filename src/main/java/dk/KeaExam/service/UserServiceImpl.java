@@ -35,22 +35,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User addUserToLeague(League league, String teamName, User user) {
+    public void addUserToLeague(League league, String teamName, User user) {
 
-            //retrieve the user from the database so we can add him to the league
-            user = getCurrentUser();
-            user.addLeague(league);
 
-            //creates and adds team
-            Team team = new Team();
-            team.setTeamName(teamName);
-            league.addTeams(team);
-            user.addTeams(team);
 
-            //saving
-            teamService.saveTeam(team);
-            saveUser(user);
-            return user;
     }
 
     @Override
@@ -58,5 +46,27 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username);
     }
 
+    @Override
+    public boolean isUserAllowedToCreateLeague() {
+        boolean allowance = true;
 
+        if(getAmountOfUserLeagues() >= 5){
+            allowance = false;
+        }
+        return allowance;
+    }
+
+    @Override
+    public int getAmountOfUserLeagues() {
+
+        int amountOfLeagues = 0;
+        try{
+            amountOfLeagues = getCurrentUser().getLeagues().size();
+        }
+        catch (NullPointerException e){
+
+        }
+        return amountOfLeagues;
+
+    }
 }

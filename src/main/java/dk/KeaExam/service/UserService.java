@@ -11,9 +11,13 @@ public interface UserService {
 
     void saveUser(User user);
 
-    User addUserToLeague(League league, String teamName, User user);
+    void addUserToLeague(League league, String teamName, User user);
 
     User findByUsername(String username);
+
+    boolean isUserAllowedToCreateLeague();
+
+    int getAmountOfUserLeagues();
 
 
 

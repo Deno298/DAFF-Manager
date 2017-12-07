@@ -59,6 +59,9 @@
     </div>
 </nav>
 
+<input type ="hidden" id="id" value="" th:attr="value=${error}"/>
+<input type="hidden" id="errormsg" value="" th:attr="value=${errormsg}"/>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -104,6 +107,7 @@
             </div>
             <div class="modal-body">
                 <form th:action="@{/leagueoverview.html}" method="post">
+                    <div class="alert-danger" id="errormessage"></div>
                     <div class="form-group">
                         <label>Holdnavn</label>
                         <input type="text" name="teamName" class="form-control"/>
@@ -119,6 +123,9 @@
         </div>
     </div>
 </div>
+
+<script src="../static/js/errormessageleagueoverview.js" th:src="@{/js/errormessageleagueoverview.js}"></script>
+
 
 </body>
 </html>

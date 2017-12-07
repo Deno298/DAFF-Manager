@@ -37,6 +37,24 @@ public class LeagueServiceImpl implements LeagueService {
     private PlayerService playerService;
 
     @Override
+    public Model joinLeague(Integer leagueId, String password, String teamName, Model model) {
+
+        //finding the league the user pressed on
+        League league = getOneLeague(leagueId);
+
+        //checks if the users requested teamname already exists in the database
+        Team teamExist = teamService.findByTeamName(teamName);
+
+        if(league.getPassword().equals(password) && teamExist == null){
+            userService.addUserToLeague(league);
+        } else {
+            model.addAttribute("errormsg", "Dit ønskede team navn er allerede i brug");
+            model.addAttribute("error", "error");
+        }
+        return model;
+    }
+
+    @Override
     public Model createLeague(League league, String year, String month, String dayOfMonth, String hour, String minute, String teamName, Model model) {
 
         String wishedDraftDateStart = year + "-" + month + "-" + dayOfMonth + " " + hour + ":" + minute;
@@ -61,8 +79,8 @@ public class LeagueServiceImpl implements LeagueService {
 
                         //Saves
                         saveLeague(league);
-
-                        userService.addUserToLeague(league, teamName, user);
+                        teamService.addTeamToLeague(teamName, league);
+                        userService.addUserToLeague(league);
 
 
                     } else {
@@ -83,7 +101,6 @@ public class LeagueServiceImpl implements LeagueService {
             model.addAttribute("error", "error");
         }
         return model;
-
     }
 
     public void saveLeague(League league){

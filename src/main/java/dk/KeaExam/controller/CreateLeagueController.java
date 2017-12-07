@@ -5,6 +5,7 @@ import dk.KeaExam.model.User;
 import dk.KeaExam.repository.LeagueRepository;
 import dk.KeaExam.repository.UserRepository;
 import dk.KeaExam.service.LeagueService;
+import dk.KeaExam.service.TeamService;
 import dk.KeaExam.service.UserService;
 import dk.KeaExam.service.UserServiceImpl;
 import org.apache.tomcat.jni.Local;
@@ -32,6 +33,8 @@ public class CreateLeagueController {
     @Autowired
     private LeagueService leagueService;
 
+    @Autowired
+    private TeamService teamService;
 
     @GetMapping("/createleague")
     public String CreateLeague(Model model) {
@@ -46,6 +49,8 @@ public class CreateLeagueController {
         User user = userService.getCurrentUser();
 
         model = leagueService.createLeague(league, year, month, dayOfMonth, hour, minute, teamName, model);
+
+
 
         model.addAttribute("userLeagues", user.getLeagues());
         model.addAttribute("league", new League());

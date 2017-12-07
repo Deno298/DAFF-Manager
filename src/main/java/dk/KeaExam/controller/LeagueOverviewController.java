@@ -40,24 +40,21 @@ public class LeagueOverviewController {
 
 
     @PostMapping("/leagueoverview")
-    public ModelAndView signUpForLeague(@ModelAttribute User user, BindingResult bindingResult,
-                                        @RequestParam("leagueId") Integer leagueId, @RequestParam("password") String password, @RequestParam("teamName") String teamName, Model model) {
+    public String signUpForLeague(@RequestParam("leagueId") Integer leagueId, @RequestParam("password") String password, @RequestParam("teamName") String teamName, Model model) {
 
-        //finding the league the user pressed on
-        League league = leagueService.getOneLeague(leagueId);
 
-        //checks if the users requested teamname already exists in the database
-        Team teamExist = teamService.findByTeamName(teamName);
-
-        model.addAttribute("league", new League());
-        if(league.getPassword().equals(password) && teamExist == null){
-            userService.addUserToLeague(league, teamName, user);
-            model.addAttribute("league", new League());
-            model.addAttribute("userLeagues", userService.getCurrentUser().getLeagues());
-            return new ModelAndView("index", "league", new League());
-        } else {
-            bindingResult.rejectValue("password", "Error.password", "der er fejl i dit kodeord");
-            return new ModelAndView("leagueoverview", "leagueoverview", leagueService.findAllAvailableLeagues() );
+        leagueService.joinLeague(leagueId, password, teamName, model);
+        if(model.containsAttribute("error")){
+            model.addAttribute("leagueoverview", leagueService.findAllAvailableLeagues());
+            return "leagueoverview";
         }
-    }
+
+        System.out.println(model.toString());
+        model.addAttribute("league", new League());
+        model.addAttribute("userLeagues", userService.getCurrentUser().getLeagues());
+
+        return "index";
+
+        }
+
 }

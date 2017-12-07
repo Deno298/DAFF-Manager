@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.deser.DataFormatReaders;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -79,7 +81,12 @@ public class League {
     }
 
     public void addUsers(User user) {
-        this.users.add(user);
+        if(user != null){
+            if(users == null){
+                users = new HashSet<User>();
+            }
+            users.add(user);
+        }
     }
 
     public List<MatchSchedule> getMatches() {
@@ -95,8 +102,14 @@ public class League {
     }
 
     public void addTeams(Team team) {
-        this.teams.add(team);
+        if(team != null){
+            if(teams == null){
+                teams = new ArrayList<Team>();
+            }
+            teams.add(team);
+        }
     }
+
 
     public LocalDateTime getDraftDate() {
         return draftDate;

@@ -21,5 +21,4 @@ public interface TeamService {
 
     void addTeamToLeague(String teamName, League league);
 
-
 }

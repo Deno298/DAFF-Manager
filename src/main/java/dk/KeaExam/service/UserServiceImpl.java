@@ -35,10 +35,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUserToLeague(League league, String teamName, User user) {
-
-
-
+    public void addUserToLeague(League league) {
+        User user = getCurrentUser();
+        user.addLeague(league);
+        saveUser(user);
+        leagueService.saveLeague(league);
     }
 
     @Override
@@ -69,4 +70,6 @@ public class UserServiceImpl implements UserService {
         return amountOfLeagues;
 
     }
+
+
 }

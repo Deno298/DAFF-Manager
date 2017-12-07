@@ -102,11 +102,10 @@ public class TeamServiceImpl implements TeamService{
         Team team = new Team();
         team.setTeamName(teamName);
 
+
         league.addTeams(team);
-
-        saveTeam(team);
         leagueService.saveLeague(league);
-
+        saveTeam(team);
     }
 }
 

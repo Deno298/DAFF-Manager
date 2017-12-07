@@ -28,4 +28,6 @@ public interface LeagueService {
     void saveLeague(League league);
 
     League getOneLeague(String leagueName);
+
+    Model joinLeague(Integer leagueId, String password, String teamName, Model model);
 }

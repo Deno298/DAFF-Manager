@@ -1,11 +1,24 @@
 package dk.KeaExam.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SearchCriteria {
 
     Integer username;
 
     Integer leagueId;
+
+    List<User> user = new ArrayList<>();
+
+    public List<User> getUser() {
+        return user;
+    }
+
+    public void setUser(List<User> user) {
+        this.user = user;
+    }
 
     public Integer getLeagueId() {
         return leagueId;

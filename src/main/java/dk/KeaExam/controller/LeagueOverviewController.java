@@ -42,14 +42,17 @@ public class LeagueOverviewController {
     @PostMapping("/leagueoverview")
     public String signUpForLeague(@RequestParam("leagueId") Integer leagueId, @RequestParam("password") String password, @RequestParam("teamName") String teamName, Model model) {
 
-
+        //adds user to league
         leagueService.joinLeague(leagueId, password, teamName, model);
+        //if the model contains errormessages
         if(model.containsAttribute("error")){
+            //return the leagueoverview page again
+
             model.addAttribute("leagueoverview", leagueService.findAllAvailableLeagues());
             return "leagueoverview";
         }
 
-        System.out.println(model.toString());
+        //return the index page
         model.addAttribute("league", new League());
         model.addAttribute("userLeagues", userService.getCurrentUser().getLeagues());
 

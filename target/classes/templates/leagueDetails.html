@@ -62,11 +62,12 @@
 
 <div  class="container" id="wrapper">
     <div class="text">
-    <p id="countdown"></p>
         <input type="hidden" id="draftdate" th:value="${draftstring}"/>
-        <a th:href="@{/draft.html}">
-    <button type = "button" id="myBtn" class="btnDisable" disabled="true" > Please wait...</button>
-        </a>
+            <label id="draftPhrase">Time to draft:</label>
+            <form th:action="@{/draft.html}" method="get">
+                <input type = "hidden" name="league" th:value="${league.leagueid}"/>
+            <button type = "submit" id="myBtn" class="btnDisable btn btn-danger" disabled="true" > Please wait...</button>
+            </form>
     </div>
                 <table class = "table" id="table">
                     <thead>
@@ -92,26 +93,6 @@
                     </tr>
                     </tbody>
                 </table>
-
-        <table class = "table">
-            <thead>
-            <tr>
-                <th>Upcoming matches</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td th:text="${leagueTeams[0].teamName} "></td>
-                <td> VS </td>
-                <td th:text=" ${leagueTeams[1].teamName}"></td>
-            </tr>
-            </tbody>
-        </table>
-
-
-
-
-                <span th:text = "${draftOrder[1]}"></span>
     </div>
 
 </body>

@@ -83,7 +83,7 @@ public class League {
     public void addUsers(User user) {
         if(user != null){
             if(users == null){
-                users = new HashSet<User>();
+                users = new HashSet<>();
             }
             users.add(user);
         }
@@ -93,8 +93,13 @@ public class League {
         return matches;
     }
 
-    public void addMatches(MatchSchedule matches) {
-        this.matches.add(matches);
+    public void addMatches(MatchSchedule match) {
+            if(match != null){
+                if(matches == null){
+                    matches = new ArrayList<>();
+                }
+                matches.add(match);
+            }
     }
 
     public List<Team> getTeams() {

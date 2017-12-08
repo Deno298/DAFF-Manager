@@ -46,24 +46,14 @@ public class LeagueDetailsController {
         //Finder ligaen brugeren ønsker at se details for
         League league = leagueService.getOneLeague(leagueId);
 
-
+        model.addAttribute("league", league);
         model.addAttribute("userTeam", teamService.findLoggedInUserTeam(leagueId));
-
         model.addAttribute("draftstring", draftService.convertDatetoString(league));
-
-        //Get all the teams from the selected league and sorting the list based on points.. see team comparable.
-        List<Team> teams = teamService.getAllTeamsInLeague(league);
-        Collections.sort(teams);
-
-        matchScheduleService.generateMatchSchedule(league);
+        // Skal ske på et senere tidspunkt matchScheduleService.generateMatchSchedule(league);
 
         //Stillingen
-        model.addAttribute("leagueTeams", teams);
-
-        //Generating draft-order
-        List<User> draftOrder = leagueService.generateDraftOrder(new ArrayList<>(league.getUsers()), "sne");
-
-        model.addAttribute("draftOrder", draftOrder);
+        model.addAttribute("leagueTeams", leagueService.getStandings(league));
+       // Skal ske på et senere tidspunkt model.addAttribute("draftOrder", leagueService.generateDraftOrder(new ArrayList<>(league.getUsers()), "sne"));
 
         //return det hele til draft siden
         return new ModelAndView("leagueDetails", "leagueDetails", model);

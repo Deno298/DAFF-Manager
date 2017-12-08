@@ -40,17 +40,15 @@ public class SearchController {
     @PostMapping("/api/search")
     public ModelAndView getSearchResultViaAjax(@Valid @RequestBody SearchCriteria search, Errors errors, Model model) {
         AjaxResponseBody result = new AjaxResponseBody();
-        System.out.println(search.getUsername());
-        System.out.println(search.getLeagueId());
+
+        System.out.println(search.getUser());
 
         Team team = teamService.findLoggedInUserTeam(search.getLeagueId());
 
         Player player = playerRepository.getOne(search.getUsername());
 
-
         teamService.addPlayer(search.getLeagueId(), player.getFirstName(), teamService.getListOfPlayers(team).size()+1);
 
-        System.out.println( leagueService.playersInLeague(leagueService.getOneLeague(1)));
         return new ModelAndView("yay", "draft", model);
 
     }

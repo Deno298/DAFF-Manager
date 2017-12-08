@@ -39,10 +39,15 @@ public class RegistrationController {
 
         @PostMapping("/signup")
         public String signUp(@ModelAttribute User user, BindingResult bindingResult) {
+
+
             User userExists = userService.findByUsername(user.getUsername());
+
             if(userExists != null){
+
                 bindingResult.rejectValue("username", "error.user", "There is already a user with that username");
             }
+
             if(bindingResult.hasErrors()){
                 return"home";
             }

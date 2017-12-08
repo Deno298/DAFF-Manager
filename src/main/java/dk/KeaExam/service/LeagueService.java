@@ -2,6 +2,7 @@ package dk.KeaExam.service;
 
 import dk.KeaExam.model.League;
 import dk.KeaExam.model.Player;
+import dk.KeaExam.model.Team;
 import dk.KeaExam.model.User;
 import org.springframework.ui.Model;
 
@@ -17,12 +18,12 @@ public interface LeagueService {
 
     List<League> findAllAvailableLeagues();
 
-    List<User> generateDraftOrder(ArrayList<User> usersInLeague, String draftType);
-
+    List<User> generateDraftOrder(int leagueid);
+    /*
     List<Player> playersInLeague(League league);
 
     List<Player> availablePlayersInLeague(League league);
-
+    */
     boolean isDateValid(String date);
 
     void saveLeague(League league);
@@ -30,4 +31,6 @@ public interface LeagueService {
     League getOneLeague(String leagueName);
 
     Model joinLeague(Integer leagueId, String password, String teamName, Model model);
+
+    List<Team> getStandings(League league);
 }

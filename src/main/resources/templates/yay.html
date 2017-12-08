@@ -16,8 +16,8 @@
 <h2 th:text="${league.leagueName}"></h2>
 <!-- To keep track of which league we are drafting for -->
 <input type="hidden" class="form-control" id="leagueid" th:value="${league.leagueid}"/>
-
-
+<input th:type="hidden" id="draftorder" th:value="${draftOrder}"/>
+<h3 th:text="${currentDrafter.getUsername()}"></h3>
 
 <table id="employeesTable" class="display">
 

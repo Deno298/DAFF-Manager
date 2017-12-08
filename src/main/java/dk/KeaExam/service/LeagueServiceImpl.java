@@ -8,10 +8,6 @@ import dk.KeaExam.repository.LeagueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -23,6 +19,9 @@ import java.util.List;
 
 @Service
 public class LeagueServiceImpl implements LeagueService {
+
+    @Autowired
+    private ErrorService errorService;
 
     @Autowired
     private TeamService teamService;
@@ -48,8 +47,7 @@ public class LeagueServiceImpl implements LeagueService {
         if(league.getPassword().equals(password) && teamExist == null){
             userService.addUserToLeague(league);
         } else {
-            model.addAttribute("errormsg", "Dit ønskede team navn er allerede i brug");
-            model.addAttribute("error", "error");
+            errorService.teamNameAlreadyInUse(model);
         }
         return model;
     }
@@ -85,20 +83,16 @@ public class LeagueServiceImpl implements LeagueService {
 
                     } else {
                         //Sending errormessages
-                        model.addAttribute("errormsg", "Hovsa din dato er vist ikke korrekt");
-                        model.addAttribute("error", "error");
+                       errorService.DateNotCorrect(model);
                     }
                 } else {
-                    model.addAttribute("errormsg", "Dit team navn er allerede i brug");
-                    model.addAttribute("error", "error");
+                    errorService.teamNameAlreadyInUse(model);
                 }
             } else {
-                model.addAttribute("errormsg", "Liga navnet eksistere allerede");
-                model.addAttribute("error", "error");
+                errorService.ligaNameAlreadyInUse(model);
             }
         } else {
-            model.addAttribute("errormsg", " eksistere allerede");
-            model.addAttribute("error", "error");
+            errorService.tooManyLeagues(model);
         }
         return model;
     }
@@ -136,7 +130,11 @@ public class LeagueServiceImpl implements LeagueService {
     }
 
     @Override
-    public List<User> generateDraftOrder(ArrayList<User> usersInLeague, String draftType) {
+    public List<User> generateDraftOrder(int leagueid) {
+        List<User> usersInLeague = new ArrayList<>(getOneLeague(leagueid).getUsers());
+
+        String draftType = "snake";
+
         int repeater = 3;
         //list we wants to return
         List<User> draftOrder = new ArrayList<>();
@@ -160,6 +158,7 @@ public class LeagueServiceImpl implements LeagueService {
         return draftOrder;
     }
 
+    /* fix senere
     @Override
     public List<Player> playersInLeague(League league) {
         List<Player> players = new ArrayList<>();
@@ -187,10 +186,10 @@ public class LeagueServiceImpl implements LeagueService {
                 }
             }
         }
-        System.out.println(players);
+
         return players;
     }
-
+*/
 
     public boolean isDateValid(String date) {
 
@@ -220,6 +219,14 @@ public class LeagueServiceImpl implements LeagueService {
     @Override
     public League getOneLeague(String leagueName) {
         return leagueRepository.findByLeagueName(leagueName);
+    }
+
+    @Override
+    public List<Team> getStandings(League league) {
+        //Get all the teams from the selected league and sorting the list based on points.. see team comparable.
+        List<Team> teams = teamService.getAllTeamsInLeague(league);
+        Collections.sort(teams);
+        return teams;
     }
 }
 

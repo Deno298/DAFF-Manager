@@ -25,9 +25,15 @@ $(document).ready( function () {
 
     function fire_ajax_submit(param1) {
 
+        var array = [];
+        array = $("#draftorder").val();
+        console.log(array);
+
         var search = {}
         search["username"] = param1;
-        search["leagueId"] = $("#leagueid").val();;
+        search["leagueId"] = $("#leagueid").val();
+        search["draftOrder"] = $("#draftorder").val();
+
 
         $("#btn-search").prop("disabled", true);
 

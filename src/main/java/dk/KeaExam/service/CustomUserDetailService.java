@@ -11,6 +11,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+/**
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 @Service
 public class CustomUserDetailService implements UserDetailsService {
 
@@ -20,6 +24,11 @@ public class CustomUserDetailService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    /**
+     * Finds a user
+     * @param username of user wished to be found
+     * @return Return an authorized user
+     */
     @Override
     public UserDetails loadUserByUsername(String username) {
         User user = userRepository.findByUsername(username);
@@ -29,6 +38,11 @@ public class CustomUserDetailService implements UserDetailsService {
         return new CustomUserPrincipal(user);
     }
 
+    /**
+     * Registers user
+     * @param user User to be registered
+     * @return Saves the user
+     */
     public User registerUser(User user){
         User finalUser = new User();
         finalUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));

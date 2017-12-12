@@ -2,74 +2,43 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <meta charset="utf-8" />
+    <title>Spring Boot + JPA + Datatables</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="../static/js/postrequest.js" th:src="@{/js/postrequest.js}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="/js/datatable.js"></script>
 </head>
 
 <body>
+<h2 th:text="${league.leagueName}"></h2>
+<!-- To keep track of which league we are drafting for -->
+<input type="hidden" class="form-control" id="leagueid" th:value="${league.leagueid}"/>
+<input th:type="hidden" id="draftorder" th:value="${draftOrder}"/>
+<h3 th:text="${currentDrafter.getUsername()}"></h3>
 
-<div class="container">
+<table id="employeesTable" class="display">
 
-
-
-
-
-
-
-
-    <div class="text">
-
-
-<!--
-        <div class="container">
-            <h1>POST-GET AJAX</h1>
-            <div id="postdiv">
-                <form id="customerForm">
-                    <label>FirstName</label>
-                    <input type="text" id="firstname" class="form-control"/>
-                    <label>LastName</label>
-                    <input type="text" id="lastname" class="form-control"/>
-                    <button type="submit" id="postBtn" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-            <div id="postResultDiv">
-            </div>
-        </div> -->
+    <!-- Header Table -->
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Last Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Last Name</td>
+    </tr>
+    </tbody>
+</table>
 
 
-
-        <input type="text" id="search" placeholder="Type to search"/>
-        <table class = "table" id="table">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Tilmeld</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="player, status : ${players}">
-                <td th:text="${status.count}">1</td>
-                <td th:text="${player.firstName}">Name</td>
-
-                <td>
-                    <div id="postdiv">
-                        <form id="customerForm">
-                            <label>Player</label>
-                            <input type="hidden" id="playerId" th:value="${player.playerId}" class="form-control"/>
-                            <button type="submit" id="postBtn" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-
-<script src="../static/js/postrequest.js" th:src="@{/js/postrequest.js}"></script>
 
 </body>
 </html>

@@ -22,14 +22,15 @@ $( document ).ready(function() {
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         // Output the result in an element with id="demo"
-        document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+        document.getElementById("myBtn").innerHTML = days + "d " + hours + "h "
             + minutes + "m " + seconds + "s ";
 
+        console.log(distance);
         // If the count down is over, write some text
         if (distance < 0) {
             $("#myBtn").removeAttr("disabled");
-            $("#myBtn").removeClass().addClass("btnEnable");
-            $("#countdown").fadeTo(2500, 0);
+            $("#myBtn").removeClass().addClass("btn btn-success");
+            draftPhrase.innerHTML = "Draft has begun";
             myBtn.innerHTML = "Click Me!";
             clearInterval(x);
         }

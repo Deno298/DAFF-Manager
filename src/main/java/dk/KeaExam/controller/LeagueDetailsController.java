@@ -24,7 +24,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
+/**
+ * This class is responsible for handling view requests to /leaguedetails.
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 @Controller
 public class LeagueDetailsController {
 
@@ -37,63 +41,30 @@ public class LeagueDetailsController {
     @Autowired
     private TeamService teamService;
 
-    @Autowired
-    private MatchScheduleService matchScheduleService;
 
+    /**
+     * Redirects the user to the leaguedetails view.
+     * @param model Model to get passed on to the view containing the selected league, teams in the league, draft date, users team and the standing.
+     * @param leagueId The selected leagues id.
+     * @return The model and the view leaguedetails.
+     */
     @GetMapping("/leaguedetails")
     public ModelAndView LeagueDetails(Model model, @RequestParam("leagueId") int leagueId) {
 
         //Finder ligaen brugeren ønsker at se details for
         League league = leagueService.getOneLeague(leagueId);
 
-
+        model.addAttribute("league", league);
         model.addAttribute("userTeam", teamService.findLoggedInUserTeam(leagueId));
-
         model.addAttribute("draftstring", draftService.convertDatetoString(league));
-
-        //Get all the teams from the selected league and sorting the list based on points.. see team comparable.
-        List<Team> teams = teamService.getAllTeamsInLeague(league);
-        Collections.sort(teams);
-
-        matchScheduleService.generateMatchSchedule(league);
-
+        // Skal ske på et senere tidspunkt matchScheduleService.generateMatchSchedule(league);
 
         //Stillingen
-        model.addAttribute("leagueTeams", teams);
-
-        //Generating draft-order
-        List<User> draftOrder = createDraftOrder(new ArrayList<>(league.getUsers()), "sne");
-
-        model.addAttribute("draftOrder", draftOrder);
+        model.addAttribute("leagueTeams", leagueService.getStandings(league));
+       // Skal ske på et senere tidspunkt model.addAttribute("draftOrder", leagueService.generateDraftOrder(new ArrayList<>(league.getUsers()), "sne"));
 
         //return det hele til draft siden
         return new ModelAndView("leagueDetails", "leagueDetails", model);
-    }
-
-
-
-    public List<User> createDraftOrder(ArrayList<User> usersInLeague, String draftType) {
-
-        int repeater = 3;
-        //list we wants to return
-        List<User> draftOrder = new ArrayList<>();
-
-        //Randomizes order of users, users comparable method returns a random value
-        Collections.sort(usersInLeague);
-
-        //adds user to final list
-        draftOrder.addAll(usersInLeague);
-
-        if(draftType.equals("snake")) {
-            Collections.reverse(usersInLeague);
-            draftOrder.addAll(usersInLeague);
-            repeater = 2;
-        }
-        for (int i = 0; i < repeater; i++) {
-            draftOrder.addAll(draftOrder);
-        }
-
-        return draftOrder;
     }
 
 

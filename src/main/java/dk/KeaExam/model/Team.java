@@ -1,12 +1,15 @@
 package dk.KeaExam.model;
 
-import dk.KeaExam.model.Player;
-import dk.KeaExam.model.User;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Team Entity
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 @Entity
 public class Team implements Comparable<Team> {
 
@@ -27,6 +30,94 @@ public class Team implements Comparable<Team> {
     private int winPercentage;
 
     private int points;
+
+    @Column(name = "player_one")
+    private String player1;
+
+    @Column(name = "player_two")
+    private String player2;
+
+    @Column(name = "player_three")
+    private String player3;
+
+    @Column(name = "player_four")
+    private String player4;
+
+    @Column(name = "player_five")
+    private String player5;
+
+    @Column(name = "player_six")
+    private String player6;
+
+    @Column(name = "player_seven")
+    private String player7;
+
+    @Column(name = "player_eight")
+    private String player8;
+
+    public String getPlayer1() {
+        return player1;
+    }
+
+    public void setPlayer1(String player1) {
+        this.player1 = player1;
+    }
+
+    public String getPlayer2() {
+        return player2;
+    }
+
+    public void setPlayer2(String player2) {
+        this.player2 = player2;
+    }
+
+    public String getPlayer3() {
+        return player3;
+    }
+
+    public void setPlayer3(String player3) {
+        this.player3 = player3;
+    }
+
+    public String getPlayer4() {
+        return player4;
+    }
+
+    public void setPlayer4(String player4) {
+        this.player4 = player4;
+    }
+
+    public String getPlayer5() {
+        return player5;
+    }
+
+    public void setPlayer5(String player5) {
+        this.player5 = player5;
+    }
+
+    public String getPlayer6() {
+        return player6;
+    }
+
+    public void setPlayer6(String player6) {
+        this.player6 = player6;
+    }
+
+    public String getPlayer7() {
+        return player7;
+    }
+
+    public void setPlayer7(String player7) {
+        this.player7 = player7;
+    }
+
+    public String getPlayer8() {
+        return player8;
+    }
+
+    public void setPlayer8(String player8) {
+        this.player8 = player8;
+    }
 
     public int getDraws() {
         return draws;
@@ -76,8 +167,6 @@ public class Team implements Comparable<Team> {
         this.loses = loses;
     }
 
-
-
     public Integer getId() {
         return id;
     }
@@ -85,10 +174,6 @@ public class Team implements Comparable<Team> {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "Teams", joinColumns = @JoinColumn(name="team_name"), inverseJoinColumns = @JoinColumn(name = "player_id"))
-    private List<Player> players = new ArrayList<>();
 
     public String getTeamName() {
         return teamName;
@@ -98,13 +183,21 @@ public class Team implements Comparable<Team> {
         this.teamName = teamName;
     }
 
-    public List<Player> getPlayers() {
+
+    public List<String> getPlayers(){
+        List<String> players = new ArrayList<String>();
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        players.add(player4);
+        players.add(player5);
+        players.add(player6);
+        players.add(player7);
+        players.add(player8);
+
         return players;
     }
 
-    public void addPlayer(Player players) {
-        this.players.add(players);
-    }
 
     @Override
     public int compareTo(Team team){

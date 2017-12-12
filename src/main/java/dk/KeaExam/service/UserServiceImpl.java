@@ -9,7 +9,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-
+/**
+ * Service Class for User Service
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -19,9 +23,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private LeagueService leagueService;
 
-    @Autowired
-    private TeamService teamService;
-
+    /**
+     * Gets the currently logged in user
+     * @return User
+     */
     @Override
     public User getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -29,11 +34,19 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(name);
     }
 
+    /**
+     * Save a user
+     * @param user User to be saved
+     */
     @Override
     public void saveUser(User user) {
         userRepository.save(user);
     }
 
+    /**
+     * Adds a user to a league
+     * @param league League of which user needs to be added
+     */
     @Override
     public void addUserToLeague(League league) {
         User user = getCurrentUser();
@@ -42,11 +55,20 @@ public class UserServiceImpl implements UserService {
         leagueService.saveLeague(league);
     }
 
+    /**
+     * Finds a user based on username
+     * @param username Username of the user to be found
+     * @return User
+     */
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
+    /**
+     * Checks if a user is allowed to create leagues
+     * @return Boolean
+     */
     @Override
     public boolean isUserAllowedToCreateLeague() {
         boolean allowance = true;
@@ -57,6 +79,10 @@ public class UserServiceImpl implements UserService {
         return allowance;
     }
 
+    /**
+     * Gets how many leagues a user is a member of
+     * @return List of leagues
+     */
     @Override
     public int getAmountOfUserLeagues() {
 

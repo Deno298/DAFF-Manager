@@ -13,15 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+
+/**
+ * Rest controller responsible for handling Datatables request.
+ * Author Emil Cronfeld
+ */
 @RestController
-public class EmployeeRestController {
+public class PlayerRestController {
 
     @Autowired
     private PlayerService playerService;
 
-    @Autowired
-    private LeagueService leagueService;
-
+    /**
+     * Method getting and returning all players.
+     * @return Returns a list with all Players.
+     */
     @RequestMapping(path = "/employees", method = RequestMethod.GET)
     public List<Player> getAllEmployees() {
         return playerService.findAllPlayers();

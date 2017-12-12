@@ -4,6 +4,11 @@ package dk.KeaExam.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Restful object used to transfer info from javascript to controller
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 public class SearchCriteria {
 
     Integer username;

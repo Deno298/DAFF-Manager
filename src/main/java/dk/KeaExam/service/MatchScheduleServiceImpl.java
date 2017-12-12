@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service Class for MatchSchedule Service
+ */
 @Service
 public class MatchScheduleServiceImpl implements MatchScheduleService {
 
@@ -18,6 +21,10 @@ public class MatchScheduleServiceImpl implements MatchScheduleService {
     @Autowired
     LeagueService leagueService;
 
+    /**
+     * Generates a match schedule for a league
+     * @param league League for which a match schedule needs to be generated
+     */
     @Override
     public void generateMatchSchedule(League league) {
 
@@ -58,7 +65,12 @@ public class MatchScheduleServiceImpl implements MatchScheduleService {
         }
 
 
-
+    /**
+     * Saves a match
+     * @param team1 First Team in the match
+     * @param team2 Second Team in the match
+     * @param league The league in which the match belongs
+     */
     public void saveAMatch(String team1, String team2, League league){
         MatchSchedule matchSchedule = new MatchSchedule();
         matchSchedule.setTeam1(team1);

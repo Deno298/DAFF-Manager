@@ -23,56 +23,33 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * This class is responsible for handling view requests to the draft view.
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 @Controller
 public class DraftController {
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    TeamRepository teamRepository;
-
-    @Autowired
     private LeagueService leagueService;
 
+    /**
+     * Redirects the user to the draft view.
+     * @param model Model to get passed on to the view .
+     * @param leagueid The leagueid for the selected league.
+     * @return The model and view.
+     */
     @GetMapping("/draft")
-    public ModelAndView draftPhase(Model model, @RequestParam("league") int leagueid){
+    public ModelAndView draftView(Model model, @RequestParam("league") int leagueid){
         League league  = leagueService.getOneLeague(leagueid);
         model.addAttribute("league" , league);
-
         List<User> draftOrder = leagueService.generateDraftOrder(leagueid);
         model.addAttribute("draftOrder", draftOrder);
         model.addAttribute("currentDrafter", draftOrder.get(0) );
 
-
-
-
-        return new ModelAndView("yay", "draft",model);
+        return new ModelAndView("draft", "draft",model);
     }
 
-
-    @PostMapping("/draft")
-    public String addPlayer(@RequestParam("teamName") String teamName, @RequestParam("playerId") int playerId,
-                                @RequestParam("leagueId") int leagueId ){
-
-
-
-
-
-        return "search";
-    }
-
-
-
-
-    /*
-    @PostMapping("/search")
-    public String addPlayer(@ModelAttribute Team team) {
-        Long a = new Long(1);
-        team = teamRepository.getOne("sol");
-        Player player = playerRepo.getOne(a);
-        team.addPlayer(player);
-        teamRepository.save(team);
-        return "search";
-    } */
 }

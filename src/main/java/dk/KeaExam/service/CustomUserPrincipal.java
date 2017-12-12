@@ -6,6 +6,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
+/**
+ * Spring security class to authorize users
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 public class CustomUserPrincipal implements UserDetails {
 
     private User user;

@@ -17,12 +17,13 @@ import org.springframework.validation.BindingResult;
 
 import javax.servlet.http.HttpServletRequest;
 
-
+/**
+ * This class is responsible for handling post requests to the signup url.
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 @Controller
 public class RegistrationController {
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private CustomUserDetailService customUserDetailService;
@@ -30,32 +31,31 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Handle post request to /signup
+     * @param user The users information is contained in this object
+     * @param bindingResult Bindingresult catching errors
+     * @return The view Home
+     */
+    @PostMapping("/signup")
+    public String signUp(@ModelAttribute User user, BindingResult bindingResult) {
 
-        @GetMapping("/signup")
-        public String signUp(Model model) {
-            model.addAttribute("user", new User());
-            return "signup";
+
+        User userExists = userService.findByUsername(user.getUsername());
+
+        if(userExists != null){
+
+            bindingResult.rejectValue("username", "error.user", "There is already a user with that username");
         }
 
-        @PostMapping("/signup")
-        public String signUp(@ModelAttribute User user, BindingResult bindingResult) {
-
-
-            User userExists = userService.findByUsername(user.getUsername());
-
-            if(userExists != null){
-
-                bindingResult.rejectValue("username", "error.user", "There is already a user with that username");
-            }
-
-            if(bindingResult.hasErrors()){
-                return"home";
-            }
-            customUserDetailService.registerUser(user);
-            return "home";
+        if(bindingResult.hasErrors()){
+            return"home";
         }
-
-
+        customUserDetailService.registerUser(user);
+        return "home";
     }
+
+
+}
 
 

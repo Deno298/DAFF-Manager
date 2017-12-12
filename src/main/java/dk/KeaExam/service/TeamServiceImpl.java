@@ -13,6 +13,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Service Class for Team Service
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 @Service
 public class TeamServiceImpl implements TeamService{
 
@@ -28,16 +33,30 @@ public class TeamServiceImpl implements TeamService{
     @Autowired
     private LeagueService leagueService;
 
+    /**
+     * Finds a team by teamname
+     * @param teamName Teamname of team to be found
+     * @return Team
+     */
     @Override
     public Team findByTeamName(String teamName) {
         return teamRepository.findByTeamName(teamName);
     }
 
+    /**
+     * Saves a team
+     * @param team Team which needs to be saved
+     */
     @Override
     public void saveTeam(Team team) {
         teamRepository.save(team);
     }
 
+    /**
+     * Find the logged in users team
+     * @param leagueId The league id of the league the team belongs to
+     * @return Team
+     */
     @Override
     public Team findLoggedInUserTeam(Integer leagueId) {
         //Finder brugeren
@@ -51,11 +70,22 @@ public class TeamServiceImpl implements TeamService{
         return null;
     }
 
+    /**
+     * Get all teams in a league
+     * @param league League for which teams needs to be returned
+     * @return List of teams in that league
+     */
     @Override
     public List<Team> getAllTeamsInLeague(League league) {
         return league.getTeams();
     }
 
+    /**
+     * Adds a player to a team
+     * @param leagueid Leagueid of league in which the team is located
+     * @param addPlayer Player to be added
+     * @param round Draft round the user is currently in
+     */
     @Override
     public void addPlayer(int leagueid, String addPlayer, int round) {
         Team team = findLoggedInUserTeam(1);
@@ -83,6 +113,11 @@ public class TeamServiceImpl implements TeamService{
         saveTeam(team);
     }
 
+    /**
+     * Get a list of all players in a team
+     * @param team Team for which to get players
+     * @return A list of players
+     */
     @Override
     public List<Player> getListOfPlayers(Team team) {
         List<Player> players = new ArrayList<>();
@@ -96,6 +131,11 @@ public class TeamServiceImpl implements TeamService{
         return players;
     }
 
+    /**
+     * Adds a team to a league
+     * @param teamName Teamname of team to be added
+     * @param league League for which the team needs to be added
+     */
     @Override
     public void addTeamToLeague(String teamName, League league) {
 

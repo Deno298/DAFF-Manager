@@ -22,7 +22,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ * This class is responsible for handling view requests to create league and the communication with
+ * the necessary services to create a league.
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 
 @Controller
 public class CreateLeagueController {
@@ -33,24 +38,24 @@ public class CreateLeagueController {
     @Autowired
     private LeagueService leagueService;
 
-    @Autowired
-    private TeamService teamService;
-
-    @GetMapping("/createleague")
-    public String CreateLeague(Model model) {
-        model.addAttribute("league", new League());
-        return "createleague";
-    }
-
+    /**
+     * Handle post requests from /createleague.
+     * @param league League containing the users chosen leagueName and leaguePassword.
+     * @param year Year of the desired draft date.
+     * @param month Month of the desired draft date.
+     * @param dayOfMonth DayOfMonth of the desired draft date.
+     * @param hour Hour of the desired draft date.
+     * @param minute Minute of the desired draft date.
+     * @param teamName Users desired teamname.
+     * @param model Model to get passed on to view.
+     * @return Index view
+     */
     @PostMapping("/createleague")
     public String CreateLeague(League league, @RequestParam("year") String year, @RequestParam("month") String month, @RequestParam("dayOfMonth") String dayOfMonth, @RequestParam("hour") String hour,
                                @RequestParam("minute") String minute, @RequestParam("wishedTeamName") String teamName, Model model){
 
         User user = userService.getCurrentUser();
-
         model = leagueService.createLeague(league, year, month, dayOfMonth, hour, minute, teamName, model);
-
-
 
         model.addAttribute("userLeagues", user.getLeagues());
         model.addAttribute("league", new League());

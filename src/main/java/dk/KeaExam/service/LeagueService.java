@@ -9,6 +9,12 @@ import org.springframework.ui.Model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * League Service Class
+ * Containing all league related methods
+ * Author Emil Cronfeld
+ * Dennis Fagerstrøm Petersen
+ */
 public interface LeagueService {
     Model createLeague(League league, String year, String month, String dayOfMonth, String hour, String minute, String teamName, Model model);
 

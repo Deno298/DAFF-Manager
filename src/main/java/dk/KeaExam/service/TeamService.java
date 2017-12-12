@@ -6,6 +6,14 @@ import dk.KeaExam.model.Team;
 
 import java.util.List;
 
+
+
+/**
+ * Team Service class
+ * Containing all Team related methods
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 public interface TeamService {
     Team findByTeamName(String teamName);
 

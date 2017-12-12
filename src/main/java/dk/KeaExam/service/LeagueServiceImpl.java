@@ -16,7 +16,11 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-
+/**
+ * Service Class for League Service
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 @Service
 public class LeagueServiceImpl implements LeagueService {
 
@@ -35,6 +39,14 @@ public class LeagueServiceImpl implements LeagueService {
     @Autowired
     private PlayerService playerService;
 
+    /**
+     * Controls if a player is eligible to join a league and communicate with services which can add them
+     * @param leagueId LeagueId of league wished to join
+     * @param password Password of the league wished to join
+     * @param teamName The users wished teamname
+     * @param model Model to carry error messages
+     * @return The Model
+     */
     @Override
     public Model joinLeague(Integer leagueId, String password, String teamName, Model model) {
 
@@ -52,6 +64,18 @@ public class LeagueServiceImpl implements LeagueService {
         return model;
     }
 
+    /**
+     * Responsible for creating leagues
+     * @param league League to be created
+     * @param year Year of draft date
+     * @param month Month of draft date
+     * @param dayOfMonth Day of draft date
+     * @param hour Hour of draft date
+     * @param minute Minute of draft date
+     * @param teamName Creators wished teamname in league
+     * @param model Model to carry error messages
+     * @return The model
+     */
     @Override
     public Model createLeague(League league, String year, String month, String dayOfMonth, String hour, String minute, String teamName, Model model) {
 
@@ -97,19 +121,37 @@ public class LeagueServiceImpl implements LeagueService {
         return model;
     }
 
+    /**
+     * Save a league
+     * @param league League to be saved
+     */
     public void saveLeague(League league){
         leagueRepository.save(league);
     }
+
+    /**
+     * Find all leagues
+     * @return List containing all leagues
+     */
     @Override
     public List<League> findAllLeagues() {
         return leagueRepository.findAll();
     }
 
+    /**
+     * Finds one league
+     * @param leagueId Leagueid of league to find
+     * @return League
+     */
     @Override
     public League getOneLeague(Integer leagueId) {
         return leagueRepository.getOne(leagueId);
     }
 
+    /**
+     * Finds all available leagues for a user
+     * @return List of Leagues
+     */
     @Override
     public List<League> findAllAvailableLeagues() {
         //Get currently logged in user
@@ -129,6 +171,11 @@ public class LeagueServiceImpl implements LeagueService {
         return leagues;
     }
 
+    /**
+     * Generates draftorder
+     * @param leagueid Leagueid of the league which needs a draftord created
+     * @return The draft order, a list of users
+     */
     @Override
     public List<User> generateDraftOrder(int leagueid) {
         List<User> usersInLeague = new ArrayList<>(getOneLeague(leagueid).getUsers());
@@ -169,6 +216,7 @@ public class LeagueServiceImpl implements LeagueService {
         return draftOrder;
     }
 
+
     /* fix senere
     @Override
     public List<Player> playersInLeague(League league) {
@@ -202,6 +250,11 @@ public class LeagueServiceImpl implements LeagueService {
     }
 */
 
+    /**
+     * Checks if a date is valid
+     * @param date The date to be checked
+     * @return Boolean.
+     */
     public boolean isDateValid(String date) {
 
         boolean validDate = true;
@@ -220,6 +273,11 @@ public class LeagueServiceImpl implements LeagueService {
         return validDate;
     }
 
+    /**
+     * Formats date so it can be set in league
+     * @param date Date to be formatted
+     * @param league League to set date to
+     */
     public void setDraftDate (String date, League league) {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -227,11 +285,21 @@ public class LeagueServiceImpl implements LeagueService {
         league.setDraftDate(draftDate);
     }
 
+    /**
+     * Finds a league by leaguename
+     * @param leagueName Leaguename of league to be found
+     * @return League
+     */
     @Override
     public League getOneLeague(String leagueName) {
         return leagueRepository.findByLeagueName(leagueName);
     }
 
+    /**
+     * Get standing
+     * @param league League of standing to be found
+     * @return A list of teams sorted based on points
+     */
     @Override
     public List<Team> getStandings(League league) {
         //Get all the teams from the selected league and sorting the list based on points.. see team comparable.

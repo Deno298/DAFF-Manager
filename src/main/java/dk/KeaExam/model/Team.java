@@ -5,6 +5,11 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Team Entity
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 @Entity
 public class Team implements Comparable<Team> {
 
@@ -177,6 +182,7 @@ public class Team implements Comparable<Team> {
     public void setTeamName(String teamName) {
         this.teamName = teamName;
     }
+
 
     public List<String> getPlayers(){
         List<String> players = new ArrayList<String>();

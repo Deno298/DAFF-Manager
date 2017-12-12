@@ -7,6 +7,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+/**
+ * Team Entity
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 @Entity
 public class User implements Comparable<User>{
 
@@ -83,7 +88,11 @@ public class User implements Comparable<User>{
         this.leagues.add(league);
     }
 
-
+    /**
+     * Gives a user a random compare to
+     * @param user User to be compared
+     * @return Returns completely random integer in the integers range
+     */
     @Override
     public int compareTo(User user){
         Random rng = new Random();

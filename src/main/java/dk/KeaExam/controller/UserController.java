@@ -10,6 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Class responsible for user editing functionality
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 @Controller
 public class UserController {
 
@@ -19,13 +24,22 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
+    /**
+     * Redirects the user to the editaccount view
+     * @return Editaccount view
+     */
     @GetMapping("/editaccount")
     public String deleteUserForm(){
         return "editaccount";
     }
 
 
+    /**
+     * Handling post request to /editaccount. Deleting user functionality
+     * @param user Currently logged in user
+     * @param model Model containing error msg
+     * @return edit account view
+     */
     @PostMapping("/editaccount")
     public String userDelete(@ModelAttribute User user, ModelMap model) {
         user = userService.getCurrentUser();

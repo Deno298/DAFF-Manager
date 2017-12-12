@@ -24,7 +24,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
+/**
+ * This class is responsible for handling view requests to /leaguedetails.
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 @Controller
 public class LeagueDetailsController {
 
@@ -37,9 +41,13 @@ public class LeagueDetailsController {
     @Autowired
     private TeamService teamService;
 
-    @Autowired
-    private MatchScheduleService matchScheduleService;
 
+    /**
+     * Redirects the user to the leaguedetails view.
+     * @param model Model to get passed on to the view containing the selected league, teams in the league, draft date, users team and the standing.
+     * @param leagueId The selected leagues id.
+     * @return The model and the view leaguedetails.
+     */
     @GetMapping("/leaguedetails")
     public ModelAndView LeagueDetails(Model model, @RequestParam("leagueId") int leagueId) {
 

@@ -20,11 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * RestController responsible for handling requests during the draft phase.
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
+
 @RestController
 public class SearchController {
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private TeamService teamService;
@@ -32,15 +35,16 @@ public class SearchController {
     @Autowired
     private PlayerRepository playerRepository;
 
-    @Autowired
-    private LeagueService leagueService;
 
-
-
+    /**
+     * Handling post requests to /api/search. Adding a requested player to the users team.
+     * @param search Misleading object name containing the playerid and userid
+     * @param errors
+     * @param model
+     * @return the draft view. All this is done in ajax so its live.
+     */
     @PostMapping("/api/search")
     public ModelAndView getSearchResultViaAjax(@Valid @RequestBody SearchCriteria search, Errors errors, Model model) {
-        AjaxResponseBody result = new AjaxResponseBody();
-
 
         System.out.println("///////");
         System.out.println(search.getUser());
@@ -51,7 +55,7 @@ public class SearchController {
 
         teamService.addPlayer(search.getLeagueId(), player.getFirstName(), teamService.getListOfPlayers(team).size()+1);
 
-        return new ModelAndView("yay", "draft", model);
+        return new ModelAndView("draft", "draft", model);
 
     }
 

@@ -182,7 +182,7 @@
             </div>
             <div class="modal-body">
                 <div class="alert-danger" id="errormessage"></div>
-                <form th:action="@{/createleague.html}" th:object="${league}" method="post">
+                <form th:action="@{/createleague}" th:object="${league}" method="post">
                     <label th:if="${#fields.hasErrors('draftDate')}" th:errors="*{draftDate}"    class="validation-message alert-danger">
                     </label>
                     <div class="form-group">

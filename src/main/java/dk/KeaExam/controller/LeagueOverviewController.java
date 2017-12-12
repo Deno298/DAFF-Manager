@@ -21,6 +21,12 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * This class is responsible for handling view requests to leagueoverview and the communication with
+ * the necessary services to sign add a user to a league.
+ * Author Emil Cronfeld
+ * Author Dennis Fagerstrøm Petersen
+ */
 @Controller
 public class LeagueOverviewController {
 
@@ -30,15 +36,23 @@ public class LeagueOverviewController {
     @Autowired
     private LeagueService leagueService;
 
-    @Autowired
-    private TeamService teamService;
-
+    /**
+     * Redirecting the user to the leagueoverview.
+     * @return ModelAndview containing all available leagues.
+     */
     @GetMapping("/leagueoverview")
     public ModelAndView showAllAvailableLeagues() {
         return new ModelAndView("leagueoverview", "leagueoverview", leagueService.findAllAvailableLeagues() );
     }
 
-
+    /**
+     * Handle post requests from leagueoverview, add user to a league
+     * @param leagueId The selected leagues id
+     * @param password The leagues password
+     * @param teamName The users requested teamname
+     * @param model model containing all available leagues
+     * @return if the user has succesfully been added return index view, else return leagueoverview
+     */
     @PostMapping("/leagueoverview")
     public String signUpForLeague(@RequestParam("leagueId") Integer leagueId, @RequestParam("password") String password, @RequestParam("teamName") String teamName, Model model) {
 

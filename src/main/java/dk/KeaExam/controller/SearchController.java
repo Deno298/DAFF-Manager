@@ -41,6 +41,8 @@ public class SearchController {
     public ModelAndView getSearchResultViaAjax(@Valid @RequestBody SearchCriteria search, Errors errors, Model model) {
         AjaxResponseBody result = new AjaxResponseBody();
 
+
+        System.out.println("///////");
         System.out.println(search.getUser());
 
         Team team = teamService.findLoggedInUserTeam(search.getLeagueId());

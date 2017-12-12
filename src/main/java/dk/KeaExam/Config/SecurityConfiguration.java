@@ -47,8 +47,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .httpBasic()
             .and()
             .csrf().disable();
-
-            http.addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
         ;
 
     }

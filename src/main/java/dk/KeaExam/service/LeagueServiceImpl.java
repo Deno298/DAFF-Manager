@@ -133,6 +133,15 @@ public class LeagueServiceImpl implements LeagueService {
     public List<User> generateDraftOrder(int leagueid) {
         List<User> usersInLeague = new ArrayList<>(getOneLeague(leagueid).getUsers());
 
+        List <String> usersInLeagueToString = new ArrayList<>();
+
+        for (User user : usersInLeague){
+            usersInLeagueToString.add(user.getUsername());
+
+        }
+
+        System.out.println(usersInLeagueToString);
+
         String draftType = "snake";
 
         int repeater = 3;
@@ -154,6 +163,8 @@ public class LeagueServiceImpl implements LeagueService {
         for (int i = 0; i < repeater; i++) {
             draftOrder.addAll(draftOrder);
         }
+
+
 
         return draftOrder;
     }

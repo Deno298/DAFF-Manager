@@ -42,11 +42,11 @@ public class DraftController {
 
         List<User> draftOrder = leagueService.generateDraftOrder(leagueid);
         model.addAttribute("draftOrder", draftOrder);
-        System.out.println(draftOrder);
-        System.out.println(draftOrder.get(0));
-        draftOrder.remove(0);
-        System.out.println(draftOrder.get(0));
         model.addAttribute("currentDrafter", draftOrder.get(0) );
+
+
+
+
         return new ModelAndView("yay", "draft",model);
     }
 

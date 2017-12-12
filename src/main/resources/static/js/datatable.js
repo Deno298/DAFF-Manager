@@ -32,7 +32,7 @@ $(document).ready( function () {
         var search = {}
         search["username"] = param1;
         search["leagueId"] = $("#leagueid").val();
-        search["draftOrder"] = $("#draftorder").val();
+        search["draftOrder"] = array;
 
 
         $("#btn-search").prop("disabled", true);

@@ -17,6 +17,7 @@ public class Team implements Comparable<Team> {
     @NotNull
     private String teamName;
 
+    @Column(name = "user_id")
     private Integer id;
 
     private Integer leagueid;

@@ -17,6 +17,7 @@ public class User implements Comparable<User>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private Integer id;
 
     @Column
@@ -31,12 +32,12 @@ public class User implements Comparable<User>{
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "USER_LEAGUE",
-    joinColumns = @JoinColumn(name="id"),
+    joinColumns = @JoinColumn(name="user_id"),
     inverseJoinColumns = @JoinColumn(name = "league_id"))
     private Set<League> leagues;
 
     @OneToMany
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private List<Team> teams;
 
 

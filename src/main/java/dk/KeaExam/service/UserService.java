@@ -24,4 +24,6 @@ public interface UserService {
 
     int getAmountOfUserLeagues();
 
+    void deleteCurrentUser();
+
 }

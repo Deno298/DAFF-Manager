@@ -27,41 +27,37 @@ public class MatchScheduleServiceImpl implements MatchScheduleService {
      */
     @Override
     public void generateMatchSchedule(League league) {
-
             List<Team> teamsInLeague = league.getTeams();
-
             //In case of odd numbered teams add a "bye" team
-            Team bye = teamService.findByTeamName("test");
+            Team bye = teamService.findByTeamName("bye");
 
             if(teamsInLeague.size() % 2 != 0){
                 teamsInLeague.add(bye);
             }
 
-
             //instantiating variables
-            int numRounds = teamsInLeague.size() - 1;
-            int halfSize = teamsInLeague.size()/2 ;
+            int numberOfRounds = 10; //There are 10 rounds of games in each Nationalligaen regular season
+            int halfLeague = teamsInLeague.size() / 2 ;
 
             List<Team> teams = new ArrayList<>();
 
-            //add all of listTeam to teams and remove index 0
+            //add all of listTeam to teams and remove index 0.
+            //the value at index 0 will function as the an static value that the other values rotate around.
             teams.addAll(teamsInLeague);
             teams.remove(0);
 
             int existingTeams = teams.size();
 
-            for(int i = 0; i < numRounds; i++){
-                System.out.println("Round: " + i);
+            for(int i = 0; i < numberOfRounds; i++){
                 int teamId = i % existingTeams;
                 saveAMatch(teams.get(teamId).getTeamName(), teamsInLeague.get(0).getTeamName(), league);
-                for(int j = 1; j < halfSize; j++){
+                for(int j = 1; j < halfLeague; j++){
                     int firstTeam = (i + j) % existingTeams;
-                    int secondTeam = (i+ existingTeams-j) % existingTeams;
+                    int secondTeam = (i + existingTeams-j) % existingTeams;
 
                     saveAMatch(teams.get(firstTeam).getTeamName(), teams.get(secondTeam).getTeamName(), league);
                 }
             }
-
         }
 
 

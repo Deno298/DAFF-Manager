@@ -54,7 +54,8 @@ public class LeagueOverviewController {
      * @return if the user has succesfully been added return index view, else return leagueoverview
      */
     @PostMapping("/leagueoverview")
-    public String signUpForLeague(@RequestParam("leagueId") Integer leagueId, @RequestParam("password") String password, @RequestParam("teamName") String teamName, Model model) {
+    public String signUpForLeague(@RequestParam("leagueId") Integer leagueId, @RequestParam("password") String password,
+                                  @RequestParam("teamName") String teamName, Model model) {
 
         //adds user to league
         leagueService.joinLeague(leagueId, password, teamName, model);

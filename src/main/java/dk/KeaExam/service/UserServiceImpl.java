@@ -97,5 +97,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
-
+    /**
+     * Deletes the currently logged in user
+     *
+     */
+    @Override
+    public void deleteCurrentUser() {
+        User user = getCurrentUser();
+        userRepository.delete(user);
+    }
 }

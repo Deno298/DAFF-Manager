@@ -13,14 +13,14 @@
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
     <div class="container">
-        <a href="index.html" class="navbar-brand">Daff fantasy</a>
+        <a href="index.html" class="navbar-brand">Daff Fantasy</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item px-2">
-                    <a href="index.html" class="nav-link active">Dashboard</a>
+                    <a href="index.html" class="nav-link active">Home</a>
                 </li>
                 <li class="nav-item px-2">
                     <a href="posts.html" class="nav-link">Posts</a>
@@ -57,15 +57,7 @@
     </div>
 </nav>
 
-<header id="main-header" class="py-2 bg-primary text-white">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h1><i class="fa fa-gear"></i> Dashboard</h1>
-            </div>
-        </div>
-    </div>
-</header>
+
 
 <input type ="hidden" id="id" value="" th:attr="value=${error}"/>
 <input type="hidden" id="errormsg" value="" th:attr="value=${errormsg}"/>
@@ -73,19 +65,15 @@
 <section id="action" class="py-4 mb-4 bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
                 <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addPostModal">
                     <i class="fa fa-plus"></i> Opret liga
                 </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <a th:href="@{/leagueoverview}" class="btn btn-success btn-block">
                     <i class="fa fa-plus"></i> Tilmeld liga
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a th:href="@{/myLeagues}" class="btn btn-success btn-block">
-                    <i class="fa fa-plus"></i> Mine ligaer
                 </a>
             </div>
         </div>
@@ -96,7 +84,8 @@
 <section id="posts">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-1"> </div>
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">
                         <h4>Dine ligaer</h4>
@@ -126,50 +115,9 @@
                     </table>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card text-center bg-primary text-white mb-3">
-                    <div class="card-body">
-                        <h3>Posts</h3>
-                        <h1 class="display-4">
-                            <i class="fa fa-pencil"></i> 6
-                        </h1>
-                        <a href="posts.html" class="btn btn-outline-light btn-sm">View</a>
-                    </div>
-                </div>
-
-                <div class="card text-center bg-success text-white mb-3">
-                    <div class="card-body">
-                        <h3>Categories</h3>
-                        <h1 class="display-4">
-                            <i class="fa fa-folder-open-o"></i> 4
-                        </h1>
-                        <a href="categories.html" class="btn btn-outline-light btn-sm">View</a>
-                    </div>
-                </div>
-
-                <div class="card text-center bg-warning text-white mb-3">
-                    <div class="card-body">
-                        <h3>Users</h3>
-                        <h1 class="display-4">
-                            <i class="fa fa-users"></i> 2
-                        </h1>
-                        <a href="users.html" class="btn btn-outline-light btn-sm">View</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
-
-<footer id="main-footer" class="bg-dark text-white mt-5 p-5">
-    <div class="conatiner">
-        <div class="row">
-            <div class="col">
-                <p class="lead text-center">Copyright &copy; 2017 Blogen</p>
-            </div>
-        </div>
-    </div>
-</footer>
 
 
 <!-- POST MODAL -->

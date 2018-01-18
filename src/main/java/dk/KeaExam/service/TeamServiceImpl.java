@@ -141,8 +141,6 @@ public class TeamServiceImpl implements TeamService{
 
         Team team = new Team();
         team.setTeamName(teamName);
-
-
         league.addTeams(team);
         leagueService.saveLeague(league);
         saveTeam(team);

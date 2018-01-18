@@ -29,10 +29,10 @@ $(document).ready( function () {
         array = $("#draftorder").val();
         console.log(array);
 
-        var search = {}
-        search["username"] = param1;
-        search["leagueId"] = $("#leagueid").val();
-        search["draftOrder"] = array;
+        var selectedPlayer = {}
+        selectedPlayer["username"] = param1;
+        selectedPlayer["leagueId"] = $("#leagueid").val();
+        selectedPlayer["draftOrder"] = array;
 
 
         $("#btn-search").prop("disabled", true);
@@ -40,7 +40,7 @@ $(document).ready( function () {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "/api/search",
+            url: "/api/select",
             data: JSON.stringify(search),
             dataType: 'json',
             cache: false,

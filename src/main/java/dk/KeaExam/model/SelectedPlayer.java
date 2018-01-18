@@ -9,7 +9,7 @@ import java.util.List;
  * Author Emil Cronfeld
  * Author Dennis Fagerstrøm Petersen
  */
-public class SearchCriteria {
+public class SelectedPlayer {
 
     Integer username;
 

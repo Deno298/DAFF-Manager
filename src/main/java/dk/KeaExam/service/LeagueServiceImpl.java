@@ -57,6 +57,8 @@ public class LeagueServiceImpl implements LeagueService {
         Team teamExist = teamService.findByTeamName(teamName);
 
         if(league.getPassword().equals(password) && teamExist == null){
+            Team newTeam = new Team();
+            teamService.addTeamToLeague(teamName, league);
             userService.addUserToLeague(league);
         } else {
             errorService.teamNameAlreadyInUse(model);

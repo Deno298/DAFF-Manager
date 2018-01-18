@@ -29,7 +29,7 @@ $( document ).ready(function() {
         // If the count down is over, write some text
         if (distance < 0) {
             $("#myBtn").removeAttr("disabled");
-            $("#myBtn").removeClass().addClass("btn btn-success");
+            $("#myBtn").removeClass().addClass("btn btn-success btn-lg");
             draftPhrase.innerHTML = "Draft has begun";
             myBtn.innerHTML = "Click Me!";
             clearInterval(x);

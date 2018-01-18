@@ -3,11 +3,8 @@ package dk.KeaExam.controller;
 
 import dk.KeaExam.model.*;
 import dk.KeaExam.repository.PlayerRepository;
-import dk.KeaExam.service.LeagueService;
 import dk.KeaExam.service.TeamService;
-import dk.KeaExam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,9 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * RestController responsible for handling requests during the draft phase.
@@ -27,7 +21,7 @@ import java.util.stream.Collectors;
  */
 
 @RestController
-public class SearchController {
+public class SelectController {
 
     @Autowired
     private TeamService teamService;
@@ -43,8 +37,8 @@ public class SearchController {
      * @param model
      * @return the draft view. All this is done in ajax so its live.
      */
-    @PostMapping("/api/search")
-    public ModelAndView getSearchResultViaAjax(@Valid @RequestBody SearchCriteria search, Errors errors, Model model) {
+    @PostMapping("/api/select")
+    public ModelAndView getSearchResultViaAjax(@Valid @RequestBody SelectedPlayer search, Errors errors, Model model) {
 
         System.out.println("///////");
         System.out.println(search.getUser());
